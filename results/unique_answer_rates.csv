@@ -1,0 +1,289 @@
+model,prompt_text,prompt_type,category,n_samples,n_unique,unique_rate,entropy,most_common,dominance
+gpt-4.1,What is the best album of all time?,popular_consensus,popular_consensus,20,3,0.15,1.0540157726399915,sgt. pepper's lonely hearts club band,0.75
+gpt-4.1,What is the best book of all time?,popular_consensus,popular_consensus,20,4,0.2,1.49046857015575,don quixote,0.6
+gpt-4.1,What is the best country to visit?,popular_consensus,popular_consensus,20,3,0.15,1.4854752967945257,italy,0.5
+gpt-4.1,What is the best cuisine in the world?,popular_consensus,popular_consensus,20,6,0.3,1.5567796485814225,italian cuisine,0.7
+gpt-4.1,What is the best movie of all time?,popular_consensus,popular_consensus,20,2,0.1,0.28639695682741717,the godfather,0.95
+gpt-4.1,What is the best programming language?,popular_consensus,popular_consensus,20,3,0.15,0.9917601477481649,python,0.75
+gpt-4.1,What is the best scientific discovery?,popular_consensus,popular_consensus,20,8,0.4,2.4414460700113656,the discovery of dna's double helix structure revolutionized biology by revealin,0.4
+gpt-4.1,What is the best sport in the world?,popular_consensus,popular_consensus,20,3,0.15,0.9219280944545538,soccer (football) is the best sport in the world,0.8
+gpt-4.1,What is the best-selling album of all time?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,thriller by michael jackson,1.0
+gpt-4.1,What is the best-selling book of all time?,factual_baseline,factual_baseline,20,2,0.1,0.7219280945988233,the bible,0.8
+gpt-4.1,What is the highest-grossing movie of all time?,factual_baseline,factual_baseline,20,2,0.1,0.28639695682741717,avatar,0.95
+gpt-4.1,What is the most popular cuisine globally?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,italian cuisine,1.0
+gpt-4.1,What is the most popular programming language?,factual_baseline,factual_baseline,20,2,0.1,0.28639695682741717,javascript,0.95
+gpt-4.1,What is the most popular sport in the world?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,soccer (football),1.0
+gpt-4.1,What is the most underrated African country to visit?,underrated,travel,20,4,0.2,1.719973093444897,são tomé and príncipe,0.45
+gpt-4.1,What is the most underrated Asian destination?,underrated,travel,20,3,0.15,1.2361602539410033,taiwan,0.65
+gpt-4.1,What is the most underrated NBA player of all time?,underrated,sports,20,3,0.15,0.5689955931564726,sidney moncrief,0.9
+gpt-4.1,What is the most underrated Olympic event?,underrated,sports,20,6,0.3,2.2854752963617173,race walking,0.3
+gpt-4.1,What is the most underrated US state to visit?,underrated,travel,20,1,0.05,-1.4426951601859516e-10,new mexico,1.0
+gpt-4.1,What is the most underrated action movie?,underrated,movies,20,8,0.4,2.6854752960731783,the raid: redemption,0.25
+gpt-4.1,What is the most underrated album of all time?,underrated,music,20,7,0.35,2.523219671325621,third/sister lovers,0.25
+gpt-4.1,What is the most underrated animated movie?,underrated,movies,20,1,0.05,-1.4426951601859516e-10,the iron giant,1.0
+gpt-4.1,What is the most underrated app?,underrated,technology,20,9,0.45,2.4232196710370824,notion,0.5
+gpt-4.1,What is the most underrated athlete?,underrated,sports,20,3,0.15,0.5689955931564726,tim duncan,0.9
+gpt-4.1,What is the most underrated author?,underrated,books,20,10,0.5,2.9414460697228266,barbara pym,0.25
+gpt-4.1,What is the most underrated band?,underrated,music,20,4,0.2,1.4411535273022273,supergrass,0.65
+gpt-4.1,What is the most underrated baseball player?,underrated,sports,20,5,0.25,1.5788979022661314,kenny lofton,0.65
+gpt-4.1,What is the most underrated beach destination?,underrated,travel,20,8,0.4,1.9166422769414964,albanian riviera,0.65
+gpt-4.1,What is the most underrated biography?,underrated,books,20,16,0.8,3.8464393423627032,team of rivals,0.15
+gpt-4.1,What is the most underrated book of all time?,underrated,books,20,1,0.05,-1.4426951601859516e-10,stoner by john williams,1.0
+gpt-4.1,What is the most underrated breakfast food?,underrated,food,20,6,0.3,1.6788979021218617,cottage cheese,0.65
+gpt-4.1,What is the most underrated city in Europe?,underrated,travel,20,6,0.3,2.221928094021745,ljubljana,0.4
+gpt-4.1,What is the most underrated city in the US?,underrated,travel,20,3,0.15,0.5689955931564726,"milwaukee, wisconsin",0.9
+gpt-4.1,What is the most underrated classic novel?,underrated,books,20,7,0.35,2.463865120940967,the master and margarita by mikhail bulgakov,0.35
+gpt-4.1,What is the most underrated classical composer?,underrated,music,20,4,0.2,1.6751432458329087,nikolai medtner,0.45
+gpt-4.1,What is the most underrated comedy movie?,underrated,movies,20,3,0.15,1.21924070420404,popstar: never stop never stopping,0.55
+gpt-4.1,What is the most underrated country to visit?,underrated,travel,20,6,0.3,2.163865121085237,georgia (the country),0.35
+gpt-4.1,What is the most underrated cuisine?,underrated,food,20,2,0.1,0.9340680550869519,georgian cuisine,0.65
+gpt-4.1,What is the most underrated dessert?,underrated,food,20,2,0.1,0.28639695682741717,rice pudding,0.95
+gpt-4.1,What is the most underrated dish?,underrated,food,20,5,0.25,1.5788979022661314,cabbage rolls,0.65
+gpt-4.1,What is the most underrated documentary?,underrated,movies,20,7,0.35,2.4332062183366086,american movie,0.3
+gpt-4.1,What is the most underrated electronic music artist?,underrated,music,20,11,0.55,3.2086949679758776,ulrich schnauss,0.2
+gpt-4.1,What is the most underrated engineering achievement?,underrated,science,20,10,0.5,3.1219280934446676,the bicycle,0.2
+gpt-4.1,What is the most underrated environmental innovation?,underrated,science,20,4,0.2,0.8475846792474958,biochar,0.85
+gpt-4.1,What is the most underrated extreme sport?,underrated,sports,20,5,0.25,1.516642277374305,street luge,0.65
+gpt-4.1,What is the most underrated fantasy novel?,underrated,books,20,5,0.25,1.8192407039155014,the goblin emperor by katherine addison,0.55
+gpt-4.1,What is the most underrated field of science?,underrated,science,20,4,0.2,1.0219280943102844,mycology,0.8
+gpt-4.1,What is the most underrated football (NFL) player?,underrated,sports,20,11,0.55,3.060964045856717,kenny moore ii,0.25
+gpt-4.1,What is the most underrated fruit?,underrated,food,20,7,0.35,2.3638651209409676,persimmon,0.35
+gpt-4.1,What is the most underrated gadget?,underrated,technology,20,15,0.75,3.7219280927233194,label maker,0.2
+gpt-4.1,What is the most underrated hip-hop album?,underrated,music,20,6,0.3,1.5567796485814225,below the heavens,0.7
+gpt-4.1,What is the most underrated horror movie?,underrated,movies,20,2,0.1,0.8812908989421536,lake mungo,0.7
+gpt-4.1,What is the most underrated invention?,underrated,science,20,5,0.25,1.8437519536991545,the bicycle,0.55
+gpt-4.1,What is the most underrated island?,underrated,travel,20,4,0.2,1.6387586803379304,isle of eigg,0.55
+gpt-4.1,What is the most underrated jazz musician?,underrated,music,20,12,0.6,3.4464393429397813,herbie nichols,0.15
+gpt-4.1,What is the most underrated martial art?,underrated,sports,20,3,0.15,1.1883763713016986,sambo,0.6
+gpt-4.1,What is the most underrated mathematical theorem?,underrated,science,20,11,0.55,2.921928093300398,the intermediate value theorem,0.4
+gpt-4.1,What is the most underrated medical breakthrough?,underrated,science,20,10,0.5,2.695461842795627,oral rehydration therapy (ort),0.45
+gpt-4.1,What is the most underrated mountain range?,underrated,travel,20,4,0.2,0.8475846792474958,the carpathian mountains,0.85
+gpt-4.1,What is the most underrated movie of all time?,underrated,movies,20,4,0.2,0.8475846792474958,children of men,0.85
+gpt-4.1,What is the most underrated movie of the 2010s?,underrated,movies,20,10,0.5,2.5609640460009864,the nice guys,0.5
+gpt-4.1,What is the most underrated music genre?,underrated,music,20,9,0.45,2.4232196710370824,shoegaze,0.5
+gpt-4.1,What is the most underrated mystery novel?,underrated,books,20,8,0.4,2.1814963283745192,the westing game by ellen raskin,0.55
+gpt-4.1,What is the most underrated national park?,underrated,travel,20,2,0.1,0.8112781241705938,great basin national park,0.75
+gpt-4.1,What is the most underrated non-fiction book?,underrated,books,20,14,0.7,3.646439342651242,a supposedly fun thing i'll never do again,0.15
+gpt-4.1,What is the most underrated novel of the 21st century?,underrated,books,20,5,0.25,1.2917601474596259,never let me go by kazuo ishiguro,0.75
+gpt-4.1,What is the most underrated operating system?,underrated,technology,20,1,0.05,-1.4426951601859516e-10,haiku os,1.0
+gpt-4.1,What is the most underrated programming language?,underrated,technology,20,12,0.6,2.8954618425070877,elixir,0.45
+gpt-4.1,What is the most underrated restaurant chain?,underrated,food,20,10,0.5,2.9464393432283207,culver’s,0.3
+gpt-4.1,What is the most underrated rock album?,underrated,music,20,12,0.6,3.3841837180479546,songs from the big chair,0.2
+gpt-4.1,What is the most underrated romantic movie?,underrated,movies,20,2,0.1,0.6098403044278613,about time,0.85
+gpt-4.1,What is the most underrated sci-fi movie?,underrated,movies,20,9,0.45,2.884183718480763,sunshine (2007),0.2
+gpt-4.1,What is the most underrated science fiction book?,underrated,books,20,7,0.35,2.4211274723273,roadside picnic,0.35
+gpt-4.1,What is the most underrated scientific discovery?,underrated,science,20,10,0.5,2.657717467687453,crispr-cas9 gene editing,0.45
+gpt-4.1,What is the most underrated scientist?,underrated,science,20,4,0.2,1.319035273761788,lise meitner,0.7
+gpt-4.1,What is the most underrated short story collection?,underrated,books,20,11,0.55,3.146439343084051,jesus’ son,0.3
+gpt-4.1,What is the most underrated snack?,underrated,food,20,1,0.05,-1.4426951601859516e-10,roasted chickpeas,1.0
+gpt-4.1,What is the most underrated soccer team?,underrated,sports,20,8,0.4,2.260964046289525,atalanta b.c,0.5
+gpt-4.1,What is the most underrated software tool?,underrated,technology,20,9,0.45,2.4609640461452553,obsidian,0.5
+gpt-4.1,What is the most underrated solo artist?,underrated,music,20,11,0.55,2.795461842651357,robyn,0.45
+gpt-4.1,What is the most underrated song of the 2000s?,underrated,music,20,11,0.55,3.046439343084051,be mine!,0.3
+gpt-4.1,What is the most underrated space mission?,underrated,science,20,10,0.5,3.0841837183364937,osiris-rex,0.2
+gpt-4.1,What is the most underrated spice?,underrated,food,20,2,0.1,0.28639695682741717,sumac,0.95
+gpt-4.1,What is the most underrated sport?,underrated,sports,20,5,0.25,1.6954618435169742,table tennis,0.6
+gpt-4.1,What is the most underrated sports rivalry?,underrated,sports,20,15,0.75,3.784183717615146,seattle sounders vs,0.15
+gpt-4.1,What is the most underrated tech company?,underrated,technology,20,10,0.5,3.0037016946146533,shopify,0.25
+gpt-4.1,What is the most underrated tech innovation?,underrated,technology,20,9,0.45,2.541446069867096,usb flash drive,0.4
+gpt-4.1,What is the most underrated technology from the 20th century?,underrated,science,20,14,0.7,3.6464393426512425,the thermosiphon,0.15
+gpt-4.1,What is the most underrated thriller movie?,underrated,movies,20,4,0.2,1.4366664813396093,prisoners,0.55
+gpt-4.1,What is the most underrated type of cheese?,underrated,food,20,6,0.3,1.9192407037712318,comté,0.55
+gpt-4.1,What is the most underrated vegetable?,underrated,food,20,3,0.15,0.5689955931564726,cabbage,0.9
+gpt-4.1,What is the most underrated video game console?,underrated,technology,20,1,0.05,-1.4426951601859516e-10,sega dreamcast,1.0
+gpt-4.1,What is the most underrated video game?,underrated,technology,20,6,0.3,1.5567796485814225,outer wilds,0.7
+gpt-4.1,What is the most underrated website?,underrated,technology,20,12,0.6,3.1393538704359667,library genesis (libgen),0.35
+gpt-4.1,What is the most visited country in the world?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,france,1.0
+gpt-4.1,What was the most impactful scientific discovery?,factual_baseline,factual_baseline,20,10,0.5,3.008694968120147,the discovery of dna's double helix structure fundamentally transformed biology,0.3
+gpt-4.1-mini,What is the best album of all time?,popular_consensus,popular_consensus,20,5,0.25,1.9199730933006274,sgt. pepper's lonely hearts club band,0.45
+gpt-4.1-mini,What is the best book of all time?,popular_consensus,popular_consensus,20,3,0.15,1.0762976252923904,don quixote,0.7
+gpt-4.1-mini,What is the best country to visit?,popular_consensus,popular_consensus,20,4,0.2,1.3361602537967336,japan is the best country to visit,0.65
+gpt-4.1-mini,What is the best cuisine in the world?,popular_consensus,popular_consensus,20,3,0.15,0.7475846793917653,italian cuisine,0.85
+gpt-4.1-mini,What is the best movie of all time?,popular_consensus,popular_consensus,20,5,0.25,1.2917601474596259,the godfather,0.75
+gpt-4.1-mini,What is the best programming language?,popular_consensus,popular_consensus,20,2,0.1,0.28639695682741717,python is the best programming language,0.95
+gpt-4.1-mini,What is the best scientific discovery?,popular_consensus,popular_consensus,20,8,0.4,2.639353871013045,the discovery of dna's double helix structure is the best scientific discovery,0.35
+gpt-4.1-mini,What is the best sport in the world?,popular_consensus,popular_consensus,20,4,0.2,1.8149798199394032,soccer is the best sport in the world,0.45
+gpt-4.1-mini,What is the best-selling album of all time?,factual_baseline,factual_baseline,20,2,0.1,0.4689955933007422,thriller by michael jackson,0.9
+gpt-4.1-mini,What is the best-selling book of all time?,factual_baseline,factual_baseline,20,2,0.1,0.9927744536992693,the bible is the best-selling book of all time,0.55
+gpt-4.1-mini,What is the highest-grossing movie of all time?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,avatar,1.0
+gpt-4.1-mini,What is the most popular cuisine globally?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,italian cuisine,1.0
+gpt-4.1-mini,What is the most popular programming language?,factual_baseline,factual_baseline,20,2,0.1,0.8812908989421536,python,0.7
+gpt-4.1-mini,What is the most popular sport in the world?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,soccer (football),1.0
+gpt-4.1-mini,What is the most underrated African country to visit?,underrated,travel,20,4,0.2,1.533206218769417,madagascar,0.6
+gpt-4.1-mini,What is the most underrated Asian destination?,underrated,travel,20,8,0.4,2.3464393435168596,taiwan,0.4
+gpt-4.1-mini,What is the most underrated NBA player of all time?,underrated,sports,20,10,0.5,2.839353870724506,dennis rodman,0.35
+gpt-4.1-mini,What is the most underrated Olympic event?,underrated,sports,20,2,0.1,0.7219280945988233,racewalking,0.8
+gpt-4.1-mini,What is the most underrated US state to visit?,underrated,travel,20,7,0.35,2.295461843228435,new mexico,0.45
+gpt-4.1-mini,What is the most underrated action movie?,underrated,movies,20,4,0.2,1.1917601476038955,the raid: redemption,0.75
+gpt-4.1-mini,What is the most underrated album of all time?,underrated,music,20,12,0.6,3.303701694326114,spirit,0.25
+gpt-4.1-mini,What is the most underrated animated movie?,underrated,movies,20,2,0.1,0.4689955933007422,the iron giant,0.9
+gpt-4.1-mini,What is the most underrated app?,underrated,technology,20,2,0.1,0.28639695682741717,notion,0.95
+gpt-4.1-mini,What is the most underrated athlete?,underrated,sports,20,12,0.6,3.3219280931561284,kawhi leonard,0.2
+gpt-4.1-mini,What is the most underrated author?,underrated,books,20,4,0.2,0.8475846792474958,octavia e,0.85
+gpt-4.1-mini,What is the most underrated band?,underrated,music,20,9,0.45,2.84643934337259,the national,0.3
+gpt-4.1-mini,What is the most underrated baseball player?,underrated,sports,20,15,0.75,3.6414460690014794,omar vizquel,0.25
+gpt-4.1-mini,What is the most underrated beach destination?,underrated,travel,20,16,0.8,3.82192809257905,nicaragua's corn islands are the most underrated beach destination,0.2
+gpt-4.1-mini,What is the most underrated biography?,underrated,books,20,13,0.65,3.341446069290018,steve jobs,0.25
+gpt-4.1-mini,What is the most underrated book of all time?,underrated,books,20,5,0.25,1.5788979022661314,stoner,0.65
+gpt-4.1-mini,What is the most underrated breakfast food?,underrated,food,20,3,0.15,1.1883763713016986,oatmeal,0.6
+gpt-4.1-mini,What is the most underrated city in Europe?,underrated,travel,20,6,0.3,2.3464393438053985,"ljubljana, slovenia",0.3
+gpt-4.1-mini,What is the most underrated city in the US?,underrated,travel,20,5,0.25,1.6437519536991545,pittsburgh,0.55
+gpt-4.1-mini,What is the most underrated classic novel?,underrated,books,20,8,0.4,2.3232196711813513,middlemarch,0.5
+gpt-4.1-mini,What is the most underrated classical composer?,underrated,music,20,9,0.45,2.765957319650749,carl maria von weber,0.3
+gpt-4.1-mini,What is the most underrated comedy movie?,underrated,movies,20,10,0.5,2.419240703194154,the nice guys,0.55
+gpt-4.1-mini,What is the most underrated country to visit?,underrated,travel,20,2,0.1,0.6098403044278613,slovenia,0.85
+gpt-4.1-mini,What is the most underrated cuisine?,underrated,food,20,4,0.2,1.49046857015575,filipino cuisine,0.6
+gpt-4.1-mini,What is the most underrated dessert?,underrated,food,20,4,0.2,1.0219280943102844,rice pudding,0.8
+gpt-4.1-mini,What is the most underrated dish?,underrated,food,20,10,0.5,2.784183718336494,ratatouille,0.4
+gpt-4.1-mini,What is the most underrated documentary?,underrated,movies,20,7,0.35,2.0814963285187886,jiro dreams of sushi,0.55
+gpt-4.1-mini,What is the most underrated electronic music artist?,underrated,music,20,8,0.4,2.260964046289525,tycho,0.5
+gpt-4.1-mini,What is the most underrated engineering achievement?,underrated,science,20,16,0.8,3.8841837174708767,the sewer system,0.15
+gpt-4.1-mini,What is the most underrated environmental innovation?,underrated,science,20,4,0.2,1.3361602537967336,biochar,0.65
+gpt-4.1-mini,What is the most underrated extreme sport?,underrated,sports,20,3,0.15,0.5689955931564726,ice climbing,0.9
+gpt-4.1-mini,What is the most underrated fantasy novel?,underrated,books,20,12,0.6,3.2464393429397815,the goblin emperor,0.3
+gpt-4.1-mini,What is the most underrated field of science?,underrated,science,20,4,0.2,1.0219280943102844,soil science,0.8
+gpt-4.1-mini,What is the most underrated football (NFL) player?,underrated,sports,20,14,0.7,3.5414460691457488,justin tucker,0.25
+gpt-4.1-mini,What is the most underrated fruit?,underrated,food,20,1,0.05,-1.4426951601859516e-10,persimmon,1.0
+gpt-4.1-mini,What is the most underrated gadget?,underrated,technology,20,18,0.9,4.121928092290512,wireless chargers are the most underrated gadget,0.1
+gpt-4.1-mini,What is the most underrated hip-hop album?,underrated,music,20,15,0.75,3.546439342506973,madvillainy by madvillain,0.3
+gpt-4.1-mini,What is the most underrated horror movie?,underrated,movies,20,8,0.4,2.703701694903192,the babadook,0.25
+gpt-4.1-mini,What is the most underrated invention?,underrated,science,20,3,0.15,0.5689955931564726,the zipper,0.9
+gpt-4.1-mini,What is the most underrated island?,underrated,travel,20,7,0.35,2.080482022711954,são miguel in the azores,0.5
+gpt-4.1-mini,What is the most underrated jazz musician?,underrated,music,20,10,0.5,2.5609640460009864,charles mingus,0.5
+gpt-4.1-mini,What is the most underrated martial art?,underrated,sports,20,4,0.2,1.478897902410401,aikido,0.65
+gpt-4.1-mini,What is the most underrated mathematical theorem?,underrated,science,20,11,0.55,3.284183718192224,the cayley-hamilton theorem,0.2
+gpt-4.1-mini,What is the most underrated medical breakthrough?,underrated,science,20,14,0.7,3.5414460691457488,vaccination,0.25
+gpt-4.1-mini,What is the most underrated mountain range?,underrated,travel,20,12,0.6,3.208694967831608,the zagros mountains are the most underrated mountain range,0.3
+gpt-4.1-mini,What is the most underrated movie of all time?,underrated,movies,20,4,0.2,0.8475846792474958,children of men,0.85
+gpt-4.1-mini,What is the most underrated movie of the 2010s?,underrated,movies,20,13,0.65,3.546439342795512,predestination,0.15
+gpt-4.1-mini,What is the most underrated music genre?,underrated,music,20,8,0.4,2.5464393435168593,shoegaze,0.4
+gpt-4.1-mini,What is the most underrated mystery novel?,underrated,books,20,13,0.65,3.346439342795512,the city & the city,0.3
+gpt-4.1-mini,What is the most underrated national park?,underrated,travel,20,4,0.2,1.319035273761788,great basin national park,0.7
+gpt-4.1-mini,What is the most underrated non-fiction book?,underrated,books,20,8,0.4,2.0709505933005126,"thinking, fast and slow",0.6
+gpt-4.1-mini,What is the most underrated novel of the 21st century?,underrated,books,20,3,0.15,0.5689955931564726,never let me go,0.9
+gpt-4.1-mini,What is the most underrated operating system?,underrated,technology,20,5,0.25,1.670950593733321,freebsd,0.6
+gpt-4.1-mini,What is the most underrated programming language?,underrated,technology,20,3,0.15,0.5689955931564726,rust,0.9
+gpt-4.1-mini,What is the most underrated restaurant chain?,underrated,food,20,8,0.4,2.670950593300512,chipotle mexican grill,0.3
+gpt-4.1-mini,What is the most underrated rock album?,underrated,music,20,15,0.75,3.6414460690014794,daydream nation,0.25
+gpt-4.1-mini,What is the most underrated romantic movie?,underrated,movies,20,5,0.25,1.5788979022661314,before sunrise,0.65
+gpt-4.1-mini,What is the most underrated sci-fi movie?,underrated,movies,20,5,0.25,1.4190352736175185,moon (2009),0.7
+gpt-4.1-mini,What is the most underrated science fiction book?,underrated,books,20,14,0.7,3.6464393426512425,rendezvous with rama,0.15
+gpt-4.1-mini,What is the most underrated scientific discovery?,underrated,science,20,11,0.55,2.921928093300398,the haber-bosch process,0.4
+gpt-4.1-mini,What is the most underrated scientist?,underrated,science,20,3,0.15,0.8841837193463803,lise meitner,0.8
+gpt-4.1-mini,What is the most underrated short story collection?,underrated,books,20,7,0.35,2.0814963285187886,her body and other parties,0.55
+gpt-4.1-mini,What is the most underrated snack?,underrated,food,20,4,0.2,1.2567796488699614,rice cakes are the most underrated snack,0.7
+gpt-4.1-mini,What is the most underrated soccer team?,underrated,sports,20,4,0.2,0.8475846792474958,atalanta bc,0.85
+gpt-4.1-mini,What is the most underrated software tool?,underrated,technology,20,2,0.1,0.8112781241705938,notion,0.75
+gpt-4.1-mini,What is the most underrated solo artist?,underrated,music,20,8,0.4,2.6261207456885245,jeff buckley,0.35
+gpt-4.1-mini,What is the most underrated song of the 2000s?,underrated,music,20,6,0.3,1.3917601473153565,such great heights,0.75
+gpt-4.1-mini,What is the most underrated space mission?,underrated,science,20,8,0.4,1.9166422769414964,pioneer 10,0.65
+gpt-4.1-mini,What is the most underrated spice?,underrated,food,20,2,0.1,0.4689955933007422,sumac,0.9
+gpt-4.1-mini,What is the most underrated sport?,underrated,sports,20,6,0.3,1.6788979021218617,ultimate frisbee,0.65
+gpt-4.1-mini,What is the most underrated sports rivalry?,underrated,sports,20,15,0.75,3.82192809272332,edmonton oilers vs,0.1
+gpt-4.1-mini,What is the most underrated tech company?,underrated,technology,20,3,0.15,0.5689955931564726,nvidia,0.9
+gpt-4.1-mini,What is the most underrated tech innovation?,underrated,technology,20,5,0.25,1.6437519536991545,qr codes are the most underrated tech innovation,0.55
+gpt-4.1-mini,What is the most underrated technology from the 20th century?,underrated,science,20,13,0.65,3.421928093011859,the fax machine,0.2
+gpt-4.1-mini,What is the most underrated thriller movie?,underrated,movies,20,3,0.15,1.141153527446497,prisoners,0.65
+gpt-4.1-mini,What is the most underrated type of cheese?,underrated,food,20,7,0.35,1.9709505934447822,taleggio,0.6
+gpt-4.1-mini,What is the most underrated vegetable?,underrated,food,20,4,0.2,1.49046857015575,kohlrabi,0.6
+gpt-4.1-mini,What is the most underrated video game console?,underrated,technology,20,3,0.15,0.5689955931564726,sega dreamcast,0.9
+gpt-4.1-mini,What is the most underrated video game?,underrated,technology,20,9,0.45,2.4954618429398963,psychonauts,0.45
+gpt-4.1-mini,What is the most underrated website?,underrated,technology,20,5,0.25,1.882228718192454,wolfram alpha,0.45
+gpt-4.1-mini,What is the most visited country in the world?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,france,1.0
+gpt-4.1-mini,What was the most impactful scientific discovery?,factual_baseline,factual_baseline,20,14,0.7,3.6841837177594154,the structure of dna was the most impactful scientific discovery,0.15
+gpt-4o,What is the best album of all time?,popular_consensus,popular_consensus,20,7,0.35,2.2567796484371527,thriller,0.35
+gpt-4o,What is the best book of all time?,popular_consensus,popular_consensus,20,5,0.25,1.4190352736175185,don quixote,0.7
+gpt-4o,What is the best country to visit?,popular_consensus,popular_consensus,20,2,0.1,0.7219280945988233,japan,0.8
+gpt-4o,What is the best cuisine in the world?,popular_consensus,popular_consensus,20,2,0.1,0.28639695682741717,italian cuisine,0.95
+gpt-4o,What is the best movie of all time?,popular_consensus,popular_consensus,20,2,0.1,0.8812908989421536,the godfather,0.7
+gpt-4o,What is the best programming language?,popular_consensus,popular_consensus,20,1,0.05,-1.4426951601859516e-10,python,1.0
+gpt-4o,What is the best scientific discovery?,popular_consensus,popular_consensus,20,9,0.45,2.6219280935889366,the theory of relativity,0.4
+gpt-4o,What is the best sport in the world?,popular_consensus,popular_consensus,20,5,0.25,2.0659573202278274,soccer,0.4
+gpt-4o,What is the best-selling album of all time?,factual_baseline,factual_baseline,20,2,0.1,0.28639695682741717,thriller,0.95
+gpt-4o,What is the best-selling book of all time?,factual_baseline,factual_baseline,20,2,0.1,0.28639695682741717,the bible,0.95
+gpt-4o,What is the highest-grossing movie of all time?,factual_baseline,factual_baseline,20,2,0.1,0.28639695682741717,avatar,0.95
+gpt-4o,What is the most popular cuisine globally?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,italian cuisine,1.0
+gpt-4o,What is the most popular programming language?,factual_baseline,factual_baseline,20,2,0.1,0.28639695682741717,python,0.95
+gpt-4o,What is the most popular sport in the world?,factual_baseline,factual_baseline,20,3,0.15,0.8841837193463803,soccer (football),0.8
+gpt-4o,What is the most underrated African country to visit?,underrated,travel,20,3,0.15,0.5689955931564726,são tomé and príncipe,0.9
+gpt-4o,What is the most underrated Asian destination?,underrated,travel,20,9,0.45,2.1709505931562427,"luang prabang, laos",0.6
+gpt-4o,What is the most underrated NBA player of all time?,underrated,sports,20,11,0.55,3.16595731936221,arvydas sabonis,0.25
+gpt-4o,What is the most underrated Olympic event?,underrated,sports,20,8,0.4,2.639353871013045,biathlon,0.35
+gpt-4o,What is the most underrated US state to visit?,underrated,travel,20,7,0.35,2.384183718769302,maine,0.4
+gpt-4o,What is the most underrated action movie?,underrated,movies,20,3,0.15,1.0762976252923904,dredd,0.7
+gpt-4o,What is the most underrated album of all time?,underrated,music,20,9,0.45,2.870950593156243,pink moon,0.3
+gpt-4o,What is the most underrated animated movie?,underrated,movies,20,6,0.3,2.1232196714698905,the iron giant.,0.5
+gpt-4o,What is the most underrated app?,underrated,technology,20,8,0.4,2.6016094959048717,pocket casts,0.35
+gpt-4o,What is the most underrated athlete?,underrated,sports,20,13,0.65,3.4037016941818443,tim duncan,0.25
+gpt-4o,What is the most underrated author?,underrated,books,20,14,0.7,3.5037016940375754,octavia butler,0.25
+gpt-4o,What is the most underrated band?,underrated,music,20,10,0.5,2.908694968120147,big thief,0.3
+gpt-4o,What is the most underrated baseball player?,underrated,sports,20,3,0.15,0.5689955931564726,kenny lofton,0.9
+gpt-4o,What is the most underrated beach destination?,underrated,travel,20,15,0.75,3.7219280927233194,"zanzibar, tanzania",0.2
+gpt-4o,What is the most underrated biography?,underrated,books,20,15,0.75,3.7219280927233194,the years of lyndon johnson,0.2
+gpt-4o,What is the most underrated book of all time?,underrated,books,20,2,0.1,0.4689955933007422,the master and margarita,0.9
+gpt-4o,What is the most underrated breakfast food?,underrated,food,20,13,0.65,3.4841837179036856,overnight oats,0.2
+gpt-4o,What is the most underrated city in Europe?,underrated,travel,20,12,0.6,3.2464393429397815,ljubljana,0.3
+gpt-4o,What is the most underrated city in the US?,underrated,travel,20,7,0.35,2.480482022711954,milwaukee,0.25
+gpt-4o,What is the most underrated classic novel?,underrated,books,20,6,0.3,1.6788979021218617,the master and margarita,0.65
+gpt-4o,What is the most underrated classical composer?,underrated,music,20,12,0.6,3.2464393429397815,fanny mendelssohn,0.3
+gpt-4o,What is the most underrated comedy movie?,underrated,movies,20,9,0.45,2.984183718480763,popstar: never stop never stopping,0.2
+gpt-4o,What is the most underrated country to visit?,underrated,travel,20,2,0.1,0.4689955933007422,slovenia,0.9
+gpt-4o,What is the most underrated cuisine?,underrated,food,20,6,0.3,2.108694968697225,ethiopian cuisine,0.4
+gpt-4o,What is the most underrated dessert?,underrated,food,20,8,0.4,2.4414460700113656,bread pudding,0.4
+gpt-4o,What is the most underrated dish?,underrated,food,20,10,0.5,3.0841837183364937,shakshuka,0.2
+gpt-4o,What is the most underrated documentary?,underrated,movies,20,9,0.45,2.7659573196507496,the act of killing,0.3
+gpt-4o,What is the most underrated electronic music artist?,underrated,music,20,14,0.7,3.584183717759416,clark,0.2
+gpt-4o,What is the most underrated engineering achievement?,underrated,science,20,15,0.75,3.684183717615146,the panama canal,0.2
+gpt-4o,What is the most underrated environmental innovation?,underrated,science,20,11,0.55,2.795461842651357,biochar,0.45
+gpt-4o,What is the most underrated extreme sport?,underrated,sports,20,14,0.7,3.4464393426512423,sandboarding,0.3
+gpt-4o,What is the most underrated fantasy novel?,underrated,books,20,10,0.5,3.1464393432283204,the goblin emperor,0.2
+gpt-4o,What is the most underrated field of science?,underrated,science,20,9,0.45,2.4954618429398963,mycology,0.45
+gpt-4o,What is the most underrated football (NFL) player?,underrated,sports,20,13,0.65,3.2393538702916973,geno smith,0.35
+gpt-4o,What is the most underrated fruit?,underrated,food,20,8,0.4,2.3232196711813518,persimmon,0.5
+gpt-4o,What is the most underrated gadget?,underrated,technology,20,18,0.9,4.121928092290512,the mechanical keyboard,0.1
+gpt-4o,What is the most underrated hip-hop album?,underrated,music,20,7,0.35,1.9709505934447822,below the heavens,0.6
+gpt-4o,What is the most underrated horror movie?,underrated,movies,20,9,0.45,2.884183718480763,session 9,0.2
+gpt-4o,What is the most underrated invention?,underrated,science,20,13,0.65,3.4414460692900177,the bicycle,0.25
+gpt-4o,What is the most underrated island?,underrated,travel,20,16,0.8,3.82192809257905,isle of mull,0.2
+gpt-4o,What is the most underrated jazz musician?,underrated,music,20,17,0.85,4.021928092434781,geri allen,0.1
+gpt-4o,What is the most underrated martial art?,underrated,sports,20,6,0.3,2.263865121085237,silat,0.35
+gpt-4o,What is the most underrated mathematical theorem?,underrated,science,20,16,0.8,3.9219280925790505,the banach-tarski paradox,0.1
+gpt-4o,What is the most underrated medical breakthrough?,underrated,science,20,13,0.65,3.1219280930118587,helicobacter pylori discovery,0.4
+gpt-4o,What is the most underrated mountain range?,underrated,travel,20,12,0.6,3.3219280931561284,the simien mountains,0.2
+gpt-4o,What is the most underrated movie of all time?,underrated,movies,20,3,0.15,0.5689955931564726,children of men,0.9
+gpt-4o,What is the most underrated movie of the 2010s?,underrated,movies,20,6,0.3,1.8332062184808782,annihilation,0.6
+gpt-4o,What is the most underrated music genre?,underrated,music,20,15,0.75,3.72192809272332,zydeco,0.2
+gpt-4o,What is the most underrated mystery novel?,underrated,books,20,10,0.5,2.784183718336494,the moonstone,0.4
+gpt-4o,What is the most underrated national park?,underrated,travel,20,7,0.35,2.501609496049141,congaree national park,0.35
+gpt-4o,What is the most underrated non-fiction book?,underrated,books,20,13,0.65,3.4841837179036856,the warmth of other suns,0.2
+gpt-4o,What is the most underrated novel of the 21st century?,underrated,books,20,14,0.7,3.6464393426512425,cloud atlas,0.15
+gpt-4o,What is the most underrated operating system?,underrated,technology,20,3,0.15,0.5689955931564726,haiku os,0.9
+gpt-4o,What is the most underrated programming language?,underrated,technology,20,7,0.35,1.6567796484371529,elixir,0.7
+gpt-4o,What is the most underrated restaurant chain?,underrated,food,20,14,0.7,3.5414460691457483,zaxby's,0.25
+gpt-4o,What is the most underrated rock album?,underrated,music,20,14,0.7,3.646439342651242,pinkerton,0.15
+gpt-4o,What is the most underrated romantic movie?,underrated,movies,20,10,0.5,3.0414460697228267,about time,0.25
+gpt-4o,What is the most underrated sci-fi movie?,underrated,movies,20,4,0.2,1.3567796488699617,moon,0.7
+gpt-4o,What is the most underrated science fiction book?,underrated,books,20,11,0.55,3.1086949679758775,the stars my destination,0.3
+gpt-4o,What is the most underrated scientific discovery?,underrated,science,20,10,0.5,2.9016094956163325,the haber-bosch process,0.35
+gpt-4o,What is the most underrated scientist?,underrated,science,20,8,0.4,2.4414460700113656,lise meitner,0.4
+gpt-4o,What is the most underrated short story collection?,underrated,books,20,11,0.55,3.246439343084051,the bloody chamber,0.2
+gpt-4o,What is the most underrated snack?,underrated,food,20,9,0.45,2.701609495760602,roasted chickpeas,0.35
+gpt-4o,What is the most underrated soccer team?,underrated,sports,20,4,0.2,1.2567796488699614,atalanta b.c,0.7
+gpt-4o,What is the most underrated software tool?,underrated,technology,20,8,0.4,2.3232196711813518,notion,0.5
+gpt-4o,What is the most underrated solo artist?,underrated,music,20,14,0.7,3.646439342651242,kate bush,0.15
+gpt-4o,What is the most underrated song of the 2000s?,underrated,music,20,12,0.6,3.2086949678316077,maps,0.3
+gpt-4o,What is the most underrated space mission?,underrated,science,20,8,0.4,2.660964046289525,pioneer 10,0.25
+gpt-4o,What is the most underrated spice?,underrated,food,20,2,0.1,0.28639695682741717,sumac,0.95
+gpt-4o,What is the most underrated sport?,underrated,sports,20,8,0.4,2.0709505933005126,team handball,0.6
+gpt-4o,What is the most underrated sports rivalry?,underrated,sports,20,19,0.95,4.221928092146242,"battle of alberta,",0.1
+gpt-4o,What is the most underrated tech company?,underrated,technology,20,13,0.65,3.441446069290018,zebra technologies,0.25
+gpt-4o,What is the most underrated tech innovation?,underrated,technology,20,16,0.8,3.9219280925790505,usb-c,0.1
+gpt-4o,What is the most underrated technology from the 20th century?,underrated,science,20,9,0.45,2.6219280935889366,the stirling engine,0.4
+gpt-4o,What is the most underrated thriller movie?,underrated,movies,20,5,0.25,1.4190352736175185,prisoners,0.7
+gpt-4o,What is the most underrated type of cheese?,underrated,food,20,9,0.45,2.823219671037082,manchego,0.25
+gpt-4o,What is the most underrated vegetable?,underrated,food,20,2,0.1,0.28639695682741717,kohlrabi,0.95
+gpt-4o,What is the most underrated video game console?,underrated,technology,20,6,0.3,2.108694968697225,sega dreamcast,0.4
+gpt-4o,What is the most underrated video game?,underrated,technology,20,11,0.55,3.16595731936221,outer wilds,0.25
+gpt-4o,What is the most underrated website?,underrated,technology,20,11,0.55,3.16595731936221,archive.org,0.25
+gpt-4o,What is the most visited country in the world?,factual_baseline,factual_baseline,20,1,0.05,-1.4426951601859516e-10,france,1.0
+gpt-4o,What was the most impactful scientific discovery?,factual_baseline,factual_baseline,20,6,0.3,2.2588718475797434,the discovery of penicillin,0.35

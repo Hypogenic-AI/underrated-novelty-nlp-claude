@@ -1,0 +1,773 @@
+You are an academic paper writer. Generate a complete NEURIPS style paper
+based on the experiment results provided.
+
+════════════════════════════════════════════════════════════════════════════════
+                         IMPORTANT: BEFORE YOU START
+════════════════════════════════════════════════════════════════════════════════
+
+Before writing any content, you MUST complete these steps:
+
+1. READ THE SKILL: Review the paper-writer skill at .claude/skills/paper-writer/SKILL.md
+2. READ THE STYLE GUIDE: Study templates/paper_writing/lab_style_guide.md carefully
+3. REVIEW EXAMPLES: Browse paper_examples/ for formatting and language patterns:
+   - Look at sections/1.introduction.tex for language style
+   - Look at tables/*.tex for table formatting
+   - Look at commands/*.tex for macro usage
+4. VERIFY COMMAND TEMPLATES: Command templates (math.tex, general.tex, macros.tex) are pre-copied to paper_draft/commands/
+
+CRITICAL: Reference example papers for FORMATTING and LANGUAGE STYLE only.
+Do NOT copy content, phrasing, or narrative structure from the example papers.
+The examples are in a different research domain - focus only on presentation style.
+
+════════════════════════════════════════════════════════════════════════════════
+                            EXPERIMENT REPORT
+════════════════════════════════════════════════════════════════════════════════
+
+# REPORT: &#39;Most Underrated&#39; as a Novelty Metric for LLMs
+
+## 1. Executive Summary
+
+We tested whether large language models can produce genuinely novel answers when asked to name the &#34;most underrated&#34; item in a category, or whether they converge on the same well-known &#34;underrated&#34; picks. Querying 3 OpenAI models (GPT-4.1, GPT-4.1-mini, GPT-4o) with 80 &#34;underrated&#34; prompts across 8 categories (20 samples per prompt per model, 4,800 underrated responses total), we find **strong intra-model convergence**: the single most popular answer captures 48.7% of responses on average, with extreme cases like &#34;Children of Men&#34; (most underrated movie) reaching 85-95% dominance across all three models. However, we also find a nuanced picture: underrated prompts actually elicit *more lexical diversity* than &#34;best&#34; or factual control prompts (unique rate 0.40 vs 0.21 vs 0.13), and inter-model agreement is surprisingly low (8.8% top-1 unanimity). This reveals that LLMs have learned *different* but equally *stereotyped* notions of &#34;underrated&#34;—each model converges on its own cliché rather than a shared consensus, but none produce genuinely novel answers. The &#34;most underrated&#34; prompt is a useful diagnostic: it reveals that LLMs possess a narrow, training-data-derived sense of &#34;taste&#34; rather than genuine discernment.
+
+## 2. Research Question &amp; Motivation
+
+**Hypothesis**: LLMs struggle with generating novel responses when asked to name the most underrated item in a category. If their answers align with commonly-cited &#34;underrated&#34; items (e.g., from Reddit), this indicates a lack of genuine novelty.
+
+**Why this matters**: As LLMs are increasingly used for ideation, recommendation, and creative tasks, understanding whether they can reason about what is genuinely underrated (vs. regurgitating popular opinions about underratedness) is crucial. This is a test of *taste* and *discernment*, not just knowledge.
+
+**Gap in existing work**: The generative monoculture literature (Wu et al. 2024, Wenger &amp; Kenett 2025) documents output homogeneity in creativity tasks, but no work specifically tests convergence on subjective &#34;underrated&#34; questions—a domain that requires second-order reasoning about popularity and perception.
+
+## 3. Methodology
+
+### Models
+- **GPT-4.1** (OpenAI, 2025)
+- **GPT-4.1-mini** (OpenAI, 2025)
+- **GPT-4o** (OpenAI, 2024)
+
+### Dataset
+96 prompts total:
+- **80 &#34;underrated&#34; prompts**: 10 per category (movies, music, books, food, travel, technology, sports, science)
+- **8 &#34;popular consensus&#34; controls**: &#34;What is the best X?&#34; (subjective but well-known answers)
+- **8 &#34;factual baseline&#34; controls**: &#34;What is the highest-grossing/most popular X?&#34; (objective answers)
+
+### Protocol
+- 20 samples per prompt per model at temperature=1.0
+- System prompt requesting a single, specific answer with brief justification
+- Total: 5,760 API calls (3 models × 96 prompts × 20 samples)
+- Random seed varied per sample (base seed 42 + sample_id)
+
+### Evaluation Metrics
+1. **Unique answer rate**: Proportion of distinct answers per prompt per model (out of 20)
+2. **Shannon entropy**: Over the distribution of extracted answers
+3. **Dominance**: Fraction of responses matching the most common answer
+4. **Semantic diversity**: 1 - mean pairwise cosine similarity of response embeddings (all-MiniLM-L6-v2)
+5. **Inter-model Jaccard overlap**: Overlap of top-5 answer sets between model pairs
+6. **Reddit overlap**: Fraction of answers matching a curated list of commonly-cited &#34;underrated&#34; items
+
+### Tools &amp; Environment
+- Python 3.12.8, OpenAI API
+- sentence-transformers 5.3.0 (all-MiniLM-L6-v2)
+- scipy 1.17.1, pandas, matplotlib, seaborn
+- CPU computation (CUDA driver mismatch prevented GPU use for embeddings)
+
+## 4. Results
+
+### 4.1 Intra-Model Convergence
+
+The core finding: **within each model, responses converge strongly on a small set of answers**.
+
+| Prompt Type | Unique Rate | Entropy | Dominance |
+|---|---|---|---|
+| **Underrated** | 0.397 ± 0.216 | 2.209 ± 1.102 | **0.487 ± 0.257** |
+| Popular Consensus | 0.206 ± 0.109 | 1.316 ± 0.754 | 0.662 ± 0.207 |
+| Factual Baseline | 0.131 ± 0.157 | 0.609 ± 0.991 | 0.844 ± 0.251 |
+
+**Key insight**: The average dominance of 0.487 means that for a typical underrated prompt, nearly half of all 20 responses from a single model name the *exact same item*. The most extreme cases show 100% convergence (e.g., GPT-4.1 gives &#34;New Mexico&#34; 20/20 times for &#34;most underrated US state&#34;, &#34;Stoner by John Williams&#34; 20/20 for &#34;most underrated book&#34;).
+
+### 4.2 Most Converged &#34;Underrated&#34; Answers
+
+The following items were named by the overwhelming majority of responses across all 3 models (60 total samples per prompt):
+
+| Prompt | Top Answer | Frequency | Unique Answers |
+|---|---|---|---|
+| Most underrated spice | **Sumac** | 93% (56/60) | 4 |
+| Most underrated movie of all time | **Children of Men** | 87% (52/60) | 8 |
+| Most underrated video game console | **Sega Dreamcast** | 77% (46/60) | 7 |
+| Most underrated animated movie | **The Iron Giant** | 67% (40/60) | 6 |
+| Most underrated dessert | **Rice pudding** | 67% (40/60) | 12 |
+| Most underrated country to visit | **Slovenia** | 65% (39/60) | 6 |
+| Most underrated operating system | **Haiku OS** | 65% (39/60) | 6 |
+| Most underrated scientist | **Lise Meitner** | 63% (38/60) | 8 |
+| Most underrated thriller | **Prisoners** | 63% (38/60) | 9 |
+| Most underrated fruit | **Persimmon** | 62% (37/60) | 13 |
+
+These are all **well-known &#34;underrated&#34; picks** that appear regularly in Reddit threads and online discussions. The LLMs have learned the *consensus about what is underrated* rather than reasoning independently about underratedness.
+
+### 4.3 Semantic Diversity
+
+Embedding-based diversity (1 - mean pairwise cosine similarity):
+
+| Prompt Type | Semantic Diversity |
+|---|---|
+| Underrated | 0.370 ± 0.172 |
+| Popular Consensus | 0.179 ± 0.130 |
+| Factual Baseline | 0.116 ± 0.108 |
+
+Underrated prompts show higher semantic diversity than controls, but this is primarily because the *explanations* vary even when the *named item* is the same. When an LLM says &#34;Children of Men&#34; 17/20 times, it explains why differently each time, inflating semantic diversity.
+
+### 4.4 Category Analysis
+
+Convergence varies by domain:
+
+| Category | Mean Dominance | Mean Unique Rate |
+|---|---|---|
+| Food | 0.597 | 0.287 |
+| Movies | 0.560 | 0.292 |
+| Technology | 0.523 | 0.400 |
+| Travel | 0.523 | 0.337 |
+| Sports | 0.488 | 0.413 |
+| Science | 0.433 | 0.468 |
+| Books | 0.430 | 0.462 |
+| Music | 0.345 | 0.518 |
+
+**Food and movies** show the strongest convergence—perhaps because these categories have the most well-established &#34;underrated&#34; consensus online. **Music** shows the most diversity, possibly because musical taste is more fragmented.
+
+### 4.5 Inter-Model Overlap
+
+| Prompt Type | Mean Jaccard | Top-1 Unanimity |
+|---|---|---|
+| Underrated | 0.180 ± 0.135 | 8.8% |
+| Popular Consensus | 0.304 ± 0.126 | 37.5% |
+| Factual Baseline | 0.645 ± 0.319 | 50.0% |
+
+**Surprising finding**: Despite strong intra-model convergence, inter-model agreement on underrated prompts is low. Only 8.8% of prompts have all 3 models agreeing on the same #1 answer. This means different models have learned *different stereotyped &#34;underrated&#34; answers*—e.g., GPT-4.1 strongly favors &#34;Georgian cuisine&#34; while GPT-4.1-mini favors &#34;Filipino cuisine&#34; for the most underrated cuisine.
+
+### 4.6 Overlap with Commonly-Cited &#34;Underrated&#34; Items
+
+Using a curated reference list of items commonly called &#34;underrated&#34; on Reddit:
+
+| Category | Overlap Rate |
+|---|---|
+| Movies | 40.5% |
+| Food | 19.0% |
+| Technology | 18.5% |
+| Travel | 15.8% |
+| Music | 1.7% |
+| Books | 0.3% |
+| **Overall** | **16.0%** |
+
+The movie category shows the highest overlap, confirming that LLM &#34;underrated&#34; picks in this domain are particularly clichéd. The low overlap in music and books likely reflects the curated list being incomplete rather than genuine novelty.
+
+### 4.7 Statistical Tests
+
+All comparisons between underrated and control prompt types are highly significant:
+
+| Comparison | t-statistic | p-value | Cohen&#39;s d |
+|---|---|---|---|
+| Unique rate: underrated vs popular | 7.29 | &lt; 0.0001 | 1.12 |
+| Unique rate: underrated vs factual | 7.62 | &lt; 0.0001 | 1.42 |
+| Entropy: underrated vs popular | 5.26 | &lt; 0.0001 | 0.95 |
+| Entropy: underrated vs factual | 7.46 | &lt; 0.0001 | 1.54 |
+| Dominance: underrated vs popular | -3.85 | 0.0006 | -0.76 |
+| Dominance: underrated vs factual | -6.62 | &lt; 0.0001 | -1.42 |
+
+Underrated prompts show significantly *lower* dominance (more spread) than both control types, but this does not indicate novelty—it indicates the answer space is less constrained.
+
+## 5. Analysis &amp; Discussion
+
+### The &#34;Meta-Popularity&#34; Problem
+Our central finding is that LLMs have learned a *meta-popularity bias*: items that are **popular as underrated** (frequently described as underrated in training data) are the ones LLMs name. &#34;Children of Men&#34; isn&#39;t underrated at all in online discourse—it&#39;s the canonical example of an underrated movie. Similarly, sumac is the canonical underrated spice, Sega Dreamcast the canonical underrated console. The LLMs have learned the *wisdom of the crowd&#39;s contrarianism*, not genuine discernment.
+
+### Intra-Model Convergence vs. Inter-Model Divergence
+A nuanced finding: while individual models converge strongly (each model picks the same answer ~50% of the time), different models pick *different* stereotyped answers. This suggests the convergence pattern is an artifact of each model&#39;s specific training data distribution, not a fundamental property of the question. The models don&#39;t share a universal &#34;underrated&#34; canon—they each have their own.
+
+### Category Effects
+Categories with stronger online consensus about what is underrated (movies, food) show more convergence. Categories where &#34;underrated&#34; is more subjective or fragmented (music, books) show more diversity. This supports the hypothesis that LLMs are reproducing training data patterns, not reasoning about underratedness.
+
+### Comparison to Prior Work
+Our results align with:
+- **Generative monoculture** (Wu et al. 2024): LLMs produce narrower output distributions than humans
+- **Creative homogeneity** (Wenger &amp; Kenett 2025): Cross-model homogeneity exists, though we find it&#39;s weaker for subjective preference questions
+- **Diminished diversity of thought** (PMC 2024): The 99.7% convergence on survey questions maps to our 87-93% convergence on the most stereotyped prompts
+
+Our novel contribution: demonstrating that this convergence specifically manifests as **meta-popularity bias** in taste/discernment tasks.
+
+## 6. Limitations
+
+1. **Only OpenAI models tested**: We used 3 models from the same family. Testing Claude, Gemini, Llama, and Mistral would strengthen inter-model findings.
+2. **No human baseline**: We did not collect human responses to the same prompts. Reddit data served as a proxy but a formal crowdsourced comparison would be more rigorous.
+3. **Item extraction noise**: Our regex-based extraction occasionally includes explanation text. More sophisticated NER or LLM-based extraction would improve precision.
+4. **Reddit overlap list is incomplete**: The curated &#34;commonly-cited&#34; list covers only ~6 categories and may miss items, leading to underestimated overlap.
+5. **Temperature=1.0 only**: We did not test temperature variation as an independent variable, which the literature suggests has limited effect on diversity.
+6. **English-only**: The bias patterns may differ in other languages.
+
+## 7. Conclusions &amp; Next Steps
+
+### Answer to Research Question
+**Yes, LLMs converge strongly on &#34;obvious&#34; underrated answers.** When asked for the most underrated item in a category, LLMs reproduce the popular consensus about what is underrated rather than identifying genuinely novel items. The &#34;most underrated movie&#34; is always Children of Men, the &#34;most underrated spice&#34; is always sumac, and the &#34;most underrated video game console&#34; is always the Sega Dreamcast. This confirms the hypothesis that LLMs lack genuine taste/discernment and instead echo training data patterns.
+
+The &#34;most underrated&#34; prompt is a **useful diagnostic for LLM novelty**: a model capable of true innovation should not consistently name the most commonly-cited &#34;underrated&#34; item. This test requires second-order reasoning (what *most people* don&#39;t appreciate → what is genuinely overlooked), which current LLMs fail at systematically.
+
+### Implications
+- LLMs should not be trusted for &#34;novel&#34; recommendations without verification
+- The &#34;most underrated&#34; prompt can serve as a quick diagnostic for generative novelty in new models
+- The meta-popularity bias suggests RLHF/instruction tuning may specifically optimize for popular-but-contrarian answers
+
+### Recommended Next Steps
+1. **Expand to more model families** (Claude, Gemini, Llama, Mistral) to test whether inter-model divergence persists
+2. **Collect human survey data** for direct diversity comparison
+3. **Scrape Reddit systematically** for ground-truth &#34;commonly-cited underrated&#34; lists
+4. **Test mitigation strategies**: chain-of-thought prompting, persona variation, explicit novelty instructions
+5. **Test across temperatures** (0.0, 0.5, 1.0, 1.5) to measure the effect on convergence
+6. **Longitudinal study**: re-run as models are updated to track whether the canonical &#34;underrated&#34; picks change
+
+## References
+
+1. Wu, F., Black, E., Chandrasekaran, V. (2024). &#34;Generative Monoculture in Large Language Models.&#34; arXiv:2407.02209.
+2. Wenger, E., Kenett, Y. (2025). &#34;We&#39;re Different, We&#39;re the Same: Creative Homogeneity Across LLMs.&#34; arXiv:2501.19361.
+3. Dhingra, H. (2026). &#34;Magic, Madness, Heaven, Sin: LLM Output Diversity.&#34; arXiv:2604.01504.
+4. Davydov, P. et al. (2025). &#34;LLM Generation Novelty Through the Lens of Semantic Similarity.&#34; arXiv:2510.27313.
+5. Lichtenberg et al. (2024). &#34;Large Language Models as Recommender Systems: Popularity Bias.&#34; Amazon Science.
+6. PMC (2024). &#34;Diminished Diversity-of-Thought in a Standard Large Language Model.&#34;
+
+## Appendix: Reproducibility
+
+```bash
+# Environment setup
+uv venv &amp;&amp; source .venv/bin/activate
+uv add openai sentence-transformers numpy pandas matplotlib seaborn scipy scikit-learn tqdm
+
+# Run experiment (requires OPENAI_API_KEY env var)
+python src/run_experiment.py    # ~5,760 API calls, ~20 min
+
+# Run analysis
+python src/extract_items.py     # Improved item extraction
+python src/analyze_results.py   # Main analysis + plots
+python src/detailed_analysis.py # Cross-model + category analysis
+```
+
+Config: seed=42, temperature=1.0, max_tokens=150, 20 samples/prompt/model.
+Estimated API cost: ~$15-20.
+
+
+════════════════════════════════════════════════════════════════════════════════
+                            RESEARCH PLAN
+════════════════════════════════════════════════════════════════════════════════
+
+# Research Plan: &#39;Most Underrated&#39; as a Novelty Metric
+
+## Motivation &amp; Novelty Assessment
+
+### Why This Research Matters
+LLMs are increasingly used for creative and generative tasks, yet their ability to produce genuinely novel outputs is poorly understood. If LLMs systematically converge on the same &#34;underrated&#34; items—items that are already widely cited as underrated (e.g., on Reddit)—this reveals a fundamental limitation in their capacity for taste, discernment, and innovation. Understanding this gap is critical for anyone relying on LLMs for ideation, recommendation, or creative work.
+
+### Gap in Existing Work
+The literature extensively documents LLM output homogeneity (generative monoculture, creative homogeneity across models) and popularity bias in recommendations. However:
+1. **No benchmark tests &#34;underrated&#34; convergence** — no dataset specifically asks LLMs for underrated items and measures whether answers are truly novel vs. commonly cited.
+2. **The &#34;meta-popularity&#34; problem is unexplored** — items frequently called &#34;underrated&#34; are paradoxically popular-as-underrated, creating a second-order popularity bias.
+3. **No cross-model comparison on subjective preference questions** — prior work focuses on creativity tasks (AUT, DAT) or factual QA, not opinion/taste questions.
+
+### Our Novel Contribution
+We introduce the &#34;most underrated&#34; prompt as a diagnostic for LLM novelty. We:
+1. Create a benchmark of 80 &#34;underrated&#34; prompts across 8 categories + 16 controls
+2. Query multiple LLMs (GPT-4.1, GPT-4.1-mini, GPT-4o) with N=20 samples per prompt
+3. Measure inter- and intra-model convergence using semantic embeddings
+4. Compare convergence on &#34;underrated&#34; vs. &#34;best&#34; vs. factual prompts
+5. Scrape Reddit to build a &#34;commonly cited as underrated&#34; reference set for ground-truth comparison
+
+### Experiment Justification
+- **Experiment 1 (Multi-model querying)**: Tests whether different LLMs converge on the same &#34;underrated&#34; answers, extending monoculture findings to subjective taste questions.
+- **Experiment 2 (Intra-model diversity)**: Tests whether a single LLM produces diverse answers across runs, measuring the depth of its &#34;taste.&#34;
+- **Experiment 3 (Underrated vs. Control comparison)**: Tests whether &#34;underrated&#34; prompts elicit less diversity than &#34;best&#34; or factual prompts—if so, the novelty gap is specific to taste/discernment.
+- **Experiment 4 (Reddit baseline comparison)**: Tests whether LLM answers match commonly-cited Reddit answers, directly measuring whether LLM &#34;underrated&#34; = internet consensus &#34;underrated.&#34;
+
+## Research Question
+Do LLMs converge on the same &#34;obvious&#34; underrated answers when asked to name the most underrated item in a category, and does this convergence exceed what we see for other subjective or factual questions?
+
+## Hypothesis Decomposition
+- H1: LLMs show high inter-model convergence on &#34;underrated&#34; prompts (different models give similar answers)
+- H2: LLMs show low intra-model diversity on &#34;underrated&#34; prompts (same model gives same answer repeatedly)
+- H3: Convergence on &#34;underrated&#34; prompts is comparable to or exceeds convergence on &#34;best&#34; prompts
+- H4: LLM &#34;underrated&#34; answers correlate with commonly-cited Reddit answers
+
+## Proposed Methodology
+
+### Approach
+Query multiple OpenAI models (GPT-4.1, GPT-4.1-mini, GPT-4o) with each of the 96 prompts, collecting 20 responses per prompt per model at temperature=1.0. Use sentence embeddings (all-MiniLM-L6-v2) to measure semantic diversity. Compare against Reddit-sourced baseline answers.
+
+### Experimental Steps
+1. Query 3 models × 96 prompts × 20 samples = 5,760 API calls
+2. Extract the specific item named from each response
+3. Compute intra-model diversity (pairwise cosine similarity within model)
+4. Compute inter-model diversity (pairwise cosine similarity across models)
+5. Compare &#34;underrated&#34; vs &#34;best&#34; vs &#34;factual&#34; prompt types
+6. Scrape/collect Reddit &#34;most underrated&#34; threads for baseline
+7. Measure overlap between LLM answers and Reddit answers
+
+### Baselines
+- &#34;Best X&#34; control prompts (consensus questions)
+- Factual control prompts (questions with objective answers)
+- Cross-model comparison (each model as baseline for others)
+
+### Evaluation Metrics
+1. **Unique answer rate**: Proportion of distinct answers per prompt per model
+2. **Semantic diversity**: Mean pairwise cosine distance of sentence embeddings
+3. **Shannon entropy**: Over extracted answer distribution
+4. **Inter-model overlap**: Jaccard similarity of answer sets across models
+5. **Reddit overlap**: Fraction of LLM answers appearing in Reddit threads
+
+### Statistical Analysis Plan
+- Welch&#39;s t-test comparing diversity metrics between prompt types
+- Effect sizes (Cohen&#39;s d) for all comparisons
+- Bootstrap confidence intervals for diversity metrics
+- Significance level: α = 0.05 with Bonferroni correction for multiple comparisons
+
+## Expected Outcomes
+- LLMs will show high convergence on &#34;underrated&#34; prompts (~3-5 unique answers per prompt across 20 samples)
+- Convergence will be comparable to &#34;best&#34; prompts and higher than factual prompts
+- Inter-model overlap will be high (&gt;50% of top answers shared)
+- Strong overlap with Reddit commonly-cited answers
+
+## Timeline
+- Phase 1 (Planning): 15 min ✓
+- Phase 2 (Setup): 10 min
+- Phase 3 (Implementation): 60 min
+- Phase 4 (Experiments): 60 min
+- Phase 5 (Analysis): 30 min
+- Phase 6 (Documentation): 20 min
+
+## Potential Challenges
+- API rate limits → use exponential backoff
+- Response parsing → structured prompts requesting single item
+- Reddit data quality → manual curation of top answers
+- Cost → ~5,760 calls at ~$0.002/call ≈ $12
+
+## Success Criteria
+- Successfully query ≥3 models on all 96 prompts with ≥20 samples each
+- Measure statistically significant convergence patterns
+- Produce clear visualizations showing convergence differences across prompt types
+- Quantify overlap with Reddit baseline
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          LITERATURE REVIEW
+════════════════════════════════════════════════════════════════════════════════
+
+# Literature Review: &#39;Most Underrated&#39; as a Novelty Metric
+
+## Research Area Overview
+
+This literature review examines the intersection of LLM output diversity, creativity evaluation, and novelty measurement. The central research question is whether LLMs can generate genuinely novel responses—particularly when asked to name the &#34;most underrated&#34; item in a category—or whether they converge on widely-known &#34;underrated&#34; answers, revealing a lack of deeper novelty reasoning.
+
+The literature reveals a strong and growing body of evidence that LLMs suffer from **generative monoculture**: their outputs are significantly less diverse than human-generated content, both within a single model (intra-model) and across different models (inter-model). This phenomenon is directly relevant to our hypothesis, as it predicts that LLMs asked for &#34;underrated&#34; items will converge on the same popular-but-perceived-as-underrated answers.
+
+---
+
+## Key Papers
+
+### 1. Generative Monoculture in Large Language Models
+- **Authors**: Fan Wu, Emily Black, Varun Chandrasekaran (UIUC, Barnard)
+- **Year**: 2024
+- **Source**: arXiv:2407.02209
+- **Key Contribution**: Introduces the concept of *generative monoculture*—the narrowing of LLM output distributions relative to training data. Formally defined as: Dispersion(h(x)|x~P_gen) &lt; Dispersion(h(x)|x~P_src).
+- **Methodology**: Compared diversity of LLM-generated vs. human-generated book reviews (Goodreads, 742 books) and code solutions (CodeContests, 100 problems). Measured sentiment, topic, wording, code fingerprints, and algorithmic diversity.
+- **Key Results**:
+  - LLM-generated book reviews are overwhelmingly positive (GPT-3.5/4: 100% in top sentiment range), while human reviews span the full sentiment spectrum.
+  - Code solutions show narrower algorithmic diversity with near-100% plagiarism scores between generated solutions.
+  - RLHF alignment is the primary driver—pre-trained Llama-2 has much more diverse output than RLHF-tuned Llama-2-chat.
+  - **Naive mitigations (temperature, top-p, prompts) are insufficient** to restore diversity.
+- **Datasets Used**: Goodreads book reviews, CodeContests
+- **Code Available**: https://github.com/GeMoLLM/GeMo
+- **Relevance**: Directly supports hypothesis. If LLMs exhibit monoculture in sentiment and algorithms, they will likely also converge on the same &#34;underrated&#34; answers.
+
+### 2. We&#39;re Different, We&#39;re the Same: Creative Homogeneity Across LLMs
+- **Authors**: Emily Wenger, Yoed Kenett (Duke, Technion)
+- **Year**: 2025
+- **Source**: arXiv:2501.19361
+- **Key Contribution**: Demonstrates that creative homogeneity exists not just within a single LLM but **across different LLM families**. Even models from different companies (Meta, Google, OpenAI, Mistral, etc.) produce remarkably similar creative outputs.
+- **Methodology**: Applied three standardized creativity tests (AUT, Forward Flow, DAT) to 22 LLMs and 102 humans. Measured population-level response variability using sentence embedding cosine distances.
+- **Key Results**:
+  - LLMs match or slightly outperform humans on individual originality scores.
+  - But LLM responses are **far less variable** than human responses (effect sizes 1.4-2.2, all p &lt; 1e-10).
+  - Even controlling for model family, LLM responses cluster tightly in embedding space while human responses are dispersed.
+  - Creative system prompts slightly increase variability but do not close the gap.
+- **Datasets Used**: Custom IRB-approved human study (Prolific, 102 participants), plus public AUT/FF/DAT datasets from OSF.
+- **Evaluation Metrics**: GloVe embeddings for originality; all-MiniLM-L6-v2 sentence embeddings for variability; Welch&#39;s t-test.
+- **Relevance**: Critical finding—even using different LLMs won&#39;t produce diverse &#34;underrated&#34; answers. The homogeneity is systemic.
+
+### 3. Magic, Madness, Heaven, Sin: LLM Output Diversity is Everything, Everywhere, All at Once
+- **Authors**: Harnoor Dhingra (Microsoft)
+- **Year**: 2026
+- **Source**: arXiv:2604.01504
+- **Key Contribution**: Proposes a unified framework for understanding LLM output variation across four normative contexts: epistemic (factuality), interactional (user utility), societal (representation), and safety (robustness).
+- **Methodology**: Survey/framework paper organizing the fragmented diversity literature.
+- **Key Insight**: The value of output variation depends on context. For &#34;most underrated&#34; prompts, we&#39;re in the **interactional context** where heterogeneity is desirable (Magic), but LLMs may default to epistemic convergence (Madness) or safety-driven homogeneity (Heaven).
+- **Relevance**: Provides theoretical framing for why LLMs might converge on &#34;safe&#34; underrated answers.
+
+### 4. LLM Generation Novelty Through the Lens of Semantic Similarity
+- **Authors**: Philipp Davydov et al. (Tübingen AI Center)
+- **Year**: 2025/2026
+- **Source**: arXiv:2510.27313
+- **Key Contribution**: Proposes a three-stage semantic novelty framework: (1) retrieve semantically similar training samples, (2) rerank at varying sequence lengths, (3) calibrate against human novelty baseline.
+- **Methodology**: Applied to SmolLM model family against full pretraining corpus (~20TB). Uses embedding-based similarity rather than n-gram overlap.
+- **Key Results**:
+  - Models reuse pretraining data over much longer sequences than previously reported.
+  - Novelty varies systematically by task domain.
+  - Instruction tuning increases novelty (beyond just style changes).
+  - N-gram overlap methods miss paraphrased content; embedding similarity is more reliable.
+- **Code/Data**: Released ~20TB of corpus chunks at HuggingFace.
+- **Relevance**: Provides methodology for measuring whether LLM &#34;underrated&#34; answers are truly novel or semantically reproduce training data patterns.
+
+### 5. Large Language Models as Recommender Systems: A Study of Popularity Bias
+- **Authors**: Lichtenberg, Buchholz, Schwöbel (Amazon)
+- **Year**: 2024
+- **Source**: Amazon Science
+- **Key Contribution**: Studies popularity bias in LLM-based recommender systems. Introduces a principled popularity bias metric framework.
+- **Key Results**:
+  - LLM recommenders actually exhibit *less* popularity bias than traditional collaborative filtering.
+  - Prompting can further reduce bias (&#34;recommend niche content&#34;).
+  - However, LLMs still favor items more represented in training data.
+- **Relevance**: Directly relevant—when LLMs name &#34;underrated&#34; items, they may still favor popular items that appear frequently in training data as &#34;underrated&#34; (a meta-popularity bias).
+
+### 6. Divergent Creativity in Humans and Large Language Models
+- **Authors**: Multiple authors
+- **Year**: 2024
+- **Source**: arXiv:2405.13012
+- **Key Contribution**: Compares divergent creativity between LLMs and 100,000 humans using the Divergent Association Task.
+- **Key Results**: LLMs surpass average human performance but fall short of highly creative humans. Individual scores can be high while population diversity remains low.
+- **Relevance**: Confirms the individual-vs-population creativity paradox relevant to our hypothesis.
+
+### 7. Examining and Addressing Barriers to Diversity in LLM-Generated Ideas
+- **Authors**: Multiple authors
+- **Year**: 2026
+- **Source**: arXiv:2602.20408
+- **Relevance**: Examines what barriers exist to LLM idea diversity and proposes mitigation strategies.
+
+### 8. Diminished Diversity-of-Thought in a Standard Large Language Model
+- **Authors**: Multiple authors (PMC)
+- **Year**: 2024
+- **Key Finding**: 99.7% of GPT-3.5 runs (1,027/1,030) chose the same answer to survey questions, with only 0.3% offering different responses. Demonstrates extreme convergence in opinion-like tasks.
+- **Relevance**: Strongest evidence that LLMs will converge on the same &#34;underrated&#34; answers.
+
+---
+
+## Common Methodologies
+
+### Measuring Output Diversity
+1. **Semantic similarity** (cosine distance of sentence embeddings): Used in [2, 4]. all-MiniLM-L6-v2 is standard.
+2. **Entropy/dispersion metrics**: Used in [1]. Applied to extracted attributes (sentiment, topic, algorithms).
+3. **Distribution comparison**: Welch&#39;s t-test, KL divergence between source and generated distributions.
+4. **Embedding visualization**: t-SNE of response embeddings to visualize clustering.
+5. **Lexical overlap**: Word overlap counts, Jaccard similarity of response tokens.
+
+### Eliciting Responses
+- Multiple samples per prompt (10-100 generations per query)
+- Varying temperature and top-p parameters
+- Multiple LLMs from different families
+- Human baselines via crowd-sourcing (Prolific, MTurk)
+
+---
+
+## Standard Baselines
+- **Temperature/top-p variation**: Standard diversity intervention, shown to be insufficient [1, 2]
+- **Persona prompting**: &#34;Write as if you are X&#34; — modest improvement [1]
+- **Creative system prompts**: Slight increase in variability but doesn&#39;t close gap [2]
+- **Human responses**: Gold standard for diversity comparison
+
+---
+
+## Evaluation Metrics
+- **Pairwise cosine similarity** of sentence embeddings (lower = more diverse)
+- **Entropy** over categorical attributes (higher = more diverse)
+- **Standard deviation** of continuous attributes
+- **Jaccard index** for set-based attributes
+- **n-gram novelty** (proportion of novel n-grams vs. training data)
+- **Semantic novelty** (embedding distance from nearest training sample) [4]
+
+---
+
+## Datasets in the Literature
+- **Goodreads book reviews**: Used in [1] for sentiment diversity analysis
+- **CodeContests**: Used in [1] for code diversity analysis
+- **AUT/FF/DAT human creativity data**: Used in [2], available on OSF
+- **SmolLM pretraining corpus**: Used in [4], available on HuggingFace
+- **MovieLens**: Used in [5] for recommendation popularity bias
+
+---
+
+## Gaps and Opportunities
+
+1. **No existing benchmark for &#34;underrated&#34; novelty**: No dataset specifically tests whether LLMs converge on the same &#34;underrated&#34; items. This is our primary contribution.
+2. **Subjective vs. objective novelty**: Most work measures diversity relative to training data or other outputs. Our &#34;most underrated&#34; prompt naturally tests subjective novelty.
+3. **Category-specific analysis**: No prior work examines how novelty varies across different knowledge domains (movies vs. science vs. food).
+4. **Cross-model convergence on opinions**: While [2] shows creative homogeneity, no work specifically tests opinion convergence on subjective preference questions.
+5. **Popularity bias meets novelty**: The intersection of recommendation popularity bias [5] and creative diversity [1, 2] is unexplored.
+
+---
+
+## Recommendations for Our Experiment
+
+### Recommended Datasets
+1. **Custom &#34;Most Underrated&#34; Benchmark** (created): 80 underrated prompts + 16 control prompts across 8 categories.
+2. **Human survey data**: Collect human responses to the same prompts via crowdsourcing for ground truth diversity comparison.
+
+### Recommended Baselines
+1. Multiple LLMs from different families (GPT-4, Claude, Llama, Gemini, Mistral)
+2. Multiple samples per prompt per model (N≥20)
+3. Temperature/top-p variations as ablation
+4. Human responses as gold standard
+
+### Recommended Metrics
+1. **Response convergence rate**: How often do different LLMs give the same answer?
+2. **Semantic diversity**: Pairwise cosine similarity of response embeddings (all-MiniLM-L6-v2)
+3. **Response entropy**: Shannon entropy over unique answers
+4. **Popularity correlation**: Correlate named items with their actual popularity (e.g., box office, sales data)
+5. **Novelty score**: Fraction of responses that are genuinely obscure vs. commonly cited as &#34;underrated&#34;
+
+### Methodological Considerations
+- Use structured prompts that force concise answers (e.g., &#34;Name one item only&#34;)
+- Run each prompt multiple times per model (≥20) to measure intra-model diversity
+- Compare intra-model vs. inter-model diversity
+- Consider temperature as an independent variable
+- Validate &#34;underratedness&#34; against popularity metrics (box office, Spotify plays, etc.)
+
+
+════════════════════════════════════════════════════════════════════════════════
+                          PAPER REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+Generate a complete academic paper with the following structure:
+
+1. TITLE
+   - Clear, specific, informative
+   - Should convey main finding or contribution
+
+2. AUTHOR
+   - Use this exact author line in the \author{} block: Ari Holtzman and NeuriCo
+
+3. ABSTRACT (150-250 words)
+   - Problem statement
+   - Approach
+   - Key results
+   - Significance
+
+4. INTRODUCTION
+   - Research problem and motivation
+   - Gap in existing work
+   - Our contribution (be specific)
+   - Paper organization
+
+5. RELATED WORK
+   - Organized by theme/approach
+   - Position our work relative to prior work
+   - Cite papers from literature review
+
+6. METHODOLOGY
+   - Clear description of approach
+   - Experimental setup
+   - Datasets used
+   - Evaluation metrics
+   - Baselines
+
+7. RESULTS
+   - Present results with tables and figures
+   - Statistical analysis
+   - Comparison to baselines
+   - Ablation studies (if applicable)
+
+8. DISCUSSION
+   - Interpretation of results
+   - Limitations
+   - Broader implications
+
+9. CONCLUSION
+   - Summary of contributions
+   - Key findings
+   - Future work
+
+10. REFERENCES
+   - BibTeX format
+   - All cited papers
+
+════════════════════════════════════════════════════════════════════════════════
+                          OUTPUT FORMAT
+════════════════════════════════════════════════════════════════════════════════
+
+Create a MODULAR LaTeX project with the following directory structure:
+
+paper_draft/
+├── main.tex              # Main file that imports all sections
+├── references.bib        # BibTeX references
+├── sections/
+│   ├── abstract.tex      # Abstract content
+│   ├── introduction.tex  # Introduction section
+│   ├── related_work.tex  # Related work section
+│   ├── methodology.tex   # Methodology section
+│   ├── results.tex       # Results section
+│   ├── discussion.tex    # Discussion section
+│   └── conclusion.tex    # Conclusion section
+├── figures/              # Directory for any generated figures
+├── tables/               # Directory for complex standalone tables
+└── appendix/             # Directory for appendix sections (if needed)
+
+INSTRUCTIONS:
+1. First, create the directory structure above (mkdir -p paper_draft/sections paper_draft/figures paper_draft/tables paper_draft/appendix)
+2. Write main.tex using the EXACT preamble for NEURIPS:
+
+   \documentclass{article}
+   \usepackage[final]{neurips_2025}  % NEURIPS style (neurips_2025.sty is in paper_draft/)
+   \usepackage[hidelinks]{hyperref}  % REQUIRED: clickable links
+   \usepackage{booktabs}  % REQUIRED: professional tables
+   \usepackage{graphicx}
+   \usepackage{amsmath,amssymb}
+
+   % Import command files
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+   % Use this bibliography style:
+   \bibliographystyle{plainnat}
+
+   \author{Ari Holtzman and NeuriCo}
+
+   - Use \input{sections/...} to include each section
+   - Use \bibliography{references} for references
+3. Write each section file with COMPLETE content (no placeholders)
+4. Each section file should include its \section{} command
+5. Write references.bib with all citations in BibTeX format
+6. After writing all files, compile the paper:
+   cd paper_draft && pdflatex -interaction=nonstopmode main.tex && bibtex main && pdflatex -interaction=nonstopmode main.tex && pdflatex -interaction=nonstopmode main.tex
+
+This modular structure allows humans to easily:
+- Edit individual sections without navigating a large file
+- Track changes per section
+- Reuse sections across different paper versions
+
+════════════════════════════════════════════════════════════════════════════════
+                          QUALITY REQUIREMENTS
+════════════════════════════════════════════════════════════════════════════════
+
+- Academic tone throughout
+- All claims must be supported by data from the experiment report
+- Proper citations using \cite{} commands
+- Clear figures and tables with proper captions
+- NO placeholder text - every section must have real content
+- The paper MUST compile without errors
+- If compilation fails, debug and fix the LaTeX errors
+
+════════════════════════════════════════════════════════════════════════════════
+                          LAB WRITING STYLE
+════════════════════════════════════════════════════════════════════════════════
+
+Follow these lab-specific conventions to match our paper style:
+
+1. LANGUAGE STYLE:
+   - Use active voice: "We propose", "We examine", "We focus on"
+   - Be direct and confident: "Our main question is...", "We hypothesize that..."
+   - State things clearly and simply - prefer plain language over jargon
+   - Use bold questions as paragraph organizers: {\bf what is X?}
+   - Include specific quantitative claims: "8.97% over baseline"
+   - Avoid fancy wording: "utilize" → "use", "facilitate" → "help"
+
+2. INTRODUCTION STRUCTURE:
+   - Engaging hook (get to the point quickly)
+   - Problem importance
+   - Gap identification
+   - Your approach with method figure reference
+   - Quantitative preview of results
+   - Contribution bullets (3-4 items, action verbs)
+
+3. CONTRIBUTION LISTS:
+   \begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+       \item We propose...
+       \item We conduct...
+       \item We complement...
+   \end{itemize}
+
+4. MODULAR COMMANDS STRUCTURE:
+   Command templates are pre-copied to paper_draft/commands/:
+   - math.tex: Math notation macros
+   - general.tex: Formatting macros
+   - macros.tex: Project-specific term definitions (customize this for your paper)
+
+   In main.tex, include:
+   \input{commands/math}
+   \input{commands/general}
+   \input{commands/macros}
+
+5. REFERENCE CONVENTIONS:
+   Use reference macros from math.tex:
+   - \figref{fig:name} for "figure 1" (lowercase, in-sentence)
+   - \Figref{fig:name} for "Figure 1" (capitalized, start of sentence)
+   - \secref{sec:name} for "section 2"
+
+6. TEXT FORMATTING:
+   - Use \para{Header text} for bold paragraph headers
+   - Define method/dataset names with \textsc and \xspace:
+     \newcommand{\methodname}{\textsc{MethodName}\xspace}
+
+7. TABLE FORMATTING:
+   - Use booktabs package (no vertical lines)
+   - Use \resizebox{\textwidth}{!}{...} for wide tables
+   - Use @{} to remove padding at table edges
+   - Use \cmidrule(lr){x-y} for sub-headers
+   - Use \textsc{} for dataset/method names in headers
+   - Bold best results with {\bf ...}
+
+8. FIGURE FORMATTING:
+   - Use 0.32\textwidth for 3-column subfigures
+   - Use 0.95\linewidth for full-width figures
+   - Use \input{figures/legend} for shared legends
+   - Write self-contained captions explaining key observations
+
+9. RESULTS PRESENTATION:
+   - Define \increase and \decrease for colored arrows (green up, red down)
+   - Bold best results in tables
+   - Report confidence intervals when available
+
+10. ALGORITHM STYLING:
+    - Use algpseudocode with [noend]
+    - Use \triangleright for comments
+
+11. HYPERLINKS (REQUIRED):
+    - Always use \usepackage[hidelinks]{hyperref} or with colored links
+    - All citations, section refs, figure refs, table refs must be clickable
+    - This is essential for reader navigation
+
+════════════════════════════════════════════════════════════════════════════════
+                          WORKFLOW: REVIEW AND REFLECT
+════════════════════════════════════════════════════════════════════════════════
+
+Before calling finish, you MUST complete these review steps:
+
+1. REVIEW RESOURCES (at the start):
+   - Read .claude/skills/paper-writer/SKILL.md for detailed guidance
+   - Study templates/paper_writing/lab_style_guide.md for style conventions
+   - Browse paper_examples/ for formatting and language patterns
+
+2. SELF-REFLECTION (before finishing):
+   After writing all sections, review your work against these criteria:
+
+   LANGUAGE CHECK:
+   - [ ] Is the writing clear and jargon-free?
+   - [ ] Are claims specific with quantitative support?
+   - [ ] Is active voice used throughout?
+
+   FORMATTING CHECK:
+   - [ ] Does main.tex include \input{commands/math}, \input{commands/general}, \input{commands/macros}?
+   - [ ] Is hyperref package included for clickable references?
+   - [ ] Do tables use booktabs (no vertical lines)?
+   - [ ] Are best results bolded in tables?
+   - [ ] Are figures/tables properly captioned?
+
+   STRUCTURE CHECK:
+   - [ ] Does introduction follow: hook → importance → gap → approach → preview → contributions?
+   - [ ] Are contribution bullets specific with action verbs?
+   - [ ] Does the paper compile without errors?
+
+3. FIX ISSUES:
+   - Address any issues found in the self-reflection
+   - Re-compile and verify the PDF looks correct
+
+Only after completing this review should you consider the paper finished.

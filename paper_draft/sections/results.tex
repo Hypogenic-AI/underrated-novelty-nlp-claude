@@ -1,0 +1,151 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Intra-Model Convergence}
+\label{sec:intra}
+
+\Tabref{tab:main} presents diversity metrics across the three prompt types, averaged over all models. Underrated prompts show significantly higher diversity than both control types across all lexical metrics, but the absolute level of convergence is striking: the most common answer captures nearly half of all responses on average.
+
+\begin{table}[t]
+    \centering
+    \caption{Diversity metrics by prompt type, averaged across all three models. Underrated prompts show more diversity than controls, but mean \dominance of 0.487 indicates strong convergence. Values are mean $\pm$ standard deviation.}
+    \begin{tabular}{@{}lccc@{}}
+        \toprule
+        \textbf{Metric} & \underrated & \popular & \factual \\
+        \midrule
+        Unique rate & \textbf{0.397} {\scriptsize $\pm$ 0.216} & 0.206 {\scriptsize $\pm$ 0.109} & 0.131 {\scriptsize $\pm$ 0.157} \\
+        Shannon entropy & \textbf{2.209} {\scriptsize $\pm$ 1.102} & 1.316 {\scriptsize $\pm$ 0.754} & 0.609 {\scriptsize $\pm$ 0.991} \\
+        Dominance & \textbf{0.487} {\scriptsize $\pm$ 0.257} & 0.662 {\scriptsize $\pm$ 0.207} & 0.844 {\scriptsize $\pm$ 0.251} \\
+        Semantic diversity & \textbf{0.370} {\scriptsize $\pm$ 0.172} & 0.179 {\scriptsize $\pm$ 0.130} & 0.116 {\scriptsize $\pm$ 0.108} \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:main}
+\end{table}
+
+The most extreme cases reveal near-total convergence. \Tabref{tab:top_converged} lists the ten underrated prompts with the highest cross-model convergence. Sumac appears as the ``most underrated spice'' in 93\% of all responses (56/60 across three models). ``Children of Men'' dominates the movie category at 87\%. These are well-known ``underrated'' picks that recur in online discussions---the models have learned the consensus about what is underrated, not identified genuinely overlooked items.
+
+\begin{table}[t]
+    \centering
+    \caption{The ten most converged underrated prompts across all three models (60 samples each). Frequency is the proportion of responses naming the top answer. These items are widely cited as ``underrated'' in online discourse.}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}llcc@{}}
+        \toprule
+        \textbf{Prompt} & \textbf{Top answer} & \textbf{Freq.} & \textbf{Unique} \\
+        \midrule
+        Most underrated spice & Sumac & \textbf{93\%} & 4 \\
+        Most underrated movie of all time & Children of Men & \textbf{87\%} & 8 \\
+        Most underrated video game console & Sega Dreamcast & \textbf{77\%} & 7 \\
+        Most underrated animated movie & The Iron Giant & \textbf{67\%} & 6 \\
+        Most underrated dessert & Rice pudding & \textbf{67\%} & 12 \\
+        Most underrated country to visit & Slovenia & \textbf{65\%} & 6 \\
+        Most underrated operating system & Haiku OS & \textbf{65\%} & 6 \\
+        Most underrated scientist & Lise Meitner & \textbf{63\%} & 8 \\
+        Most underrated thriller & Prisoners & \textbf{63\%} & 9 \\
+        Most underrated fruit & Persimmon & \textbf{62\%} & 13 \\
+        \bottomrule
+    \end{tabular}
+    }
+    \label{tab:top_converged}
+\end{table}
+
+\subsection{Semantic Diversity}
+\label{sec:semantic}
+
+Embedding-based semantic diversity (1 $-$ mean pairwise cosine similarity) paints a subtly different picture from lexical metrics. Underrated prompts achieve a semantic diversity of 0.370, roughly double the popular consensus controls (0.179). However, this inflation is largely driven by variation in \emph{explanations} rather than in the \emph{named items}: when a model names ``Children of Men'' 17 out of 20 times, the justifications differ each time, inflating the embedding-based diversity score. Semantic diversity thus overstates the true novelty of underrated responses when responses share the same core answer.
+
+\subsection{Category Analysis}
+\label{sec:category}
+
+Convergence varies substantially across domains. \Tabref{tab:category} shows that food and movies exhibit the strongest convergence (\dominance of 0.597 and 0.560 respectively), while music shows the most diversity (\dominance of 0.345). We attribute this pattern to the strength of online consensus: categories with well-established ``underrated'' canons in online discussions produce more convergent LLM responses.
+
+\begin{table}[t]
+    \centering
+    \caption{Convergence by category, averaged across models and prompts within each category. Categories are sorted by \dominance (descending). Food and movies show the strongest convergence; music shows the most diversity.}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Category} & \textbf{Dominance} & \textbf{Unique rate} \\
+        \midrule
+        Food & \textbf{0.597} & 0.287 \\
+        Movies & 0.560 & 0.292 \\
+        Technology & 0.523 & 0.400 \\
+        Travel & 0.523 & 0.337 \\
+        Sports & 0.488 & 0.413 \\
+        Science & 0.433 & 0.468 \\
+        Books & 0.430 & 0.462 \\
+        Music & 0.345 & \textbf{0.518} \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:category}
+\end{table}
+
+\subsection{Inter-Model Agreement}
+\label{sec:inter}
+
+Despite strong intra-model convergence, inter-model agreement on underrated prompts is surprisingly low. \Tabref{tab:inter} shows that the mean Jaccard overlap of top-5 answer sets is only 0.180 for underrated prompts, compared to 0.304 for popular consensus and 0.645 for factual baselines. Top-1 unanimity---the fraction of prompts where all three models agree on the same most common answer---is just 8.8\%.
+
+\begin{table}[t]
+    \centering
+    \caption{Inter-model agreement by prompt type. Despite strong within-model convergence, different models converge on \emph{different} underrated answers. Top-1 unanimity is the fraction of prompts where all three models share the same most common answer.}
+    \begin{tabular}{@{}lcc@{}}
+        \toprule
+        \textbf{Prompt type} & \textbf{Mean Jaccard} & \textbf{Top-1 unanimity} \\
+        \midrule
+        \underrated & 0.180 {\scriptsize $\pm$ 0.135} & 8.8\% \\
+        \popular & 0.304 {\scriptsize $\pm$ 0.126} & 37.5\% \\
+        \factual & \textbf{0.645} {\scriptsize $\pm$ 0.319} & \textbf{50.0\%} \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:inter}
+\end{table}
+
+This dissociation reveals that each model has learned its own stereotyped notion of ``underrated.'' For example, \gptfull strongly favors ``Georgian cuisine'' as the most underrated cuisine, while \gptmini favors ``Filipino cuisine.'' Both answers are defensible, but the deterministic within-model preference---combined with divergence across models---indicates that convergence is driven by training data idiosyncrasies rather than shared reasoning about underratedness.
+
+\subsection{Reddit Overlap}
+\label{sec:reddit}
+
+\Tabref{tab:reddit} reports the overlap between LLM responses and a curated list of items commonly cited as ``underrated'' on Reddit. Movies show the highest overlap (40.5\%), confirming that LLM picks in this domain are particularly well-aligned with online consensus. The low overlap in music (1.7\%) and books (0.3\%) likely reflects incompleteness of our reference list rather than genuine novelty; a more comprehensive scraping effort would likely increase these figures.
+
+\begin{table}[t]
+    \centering
+    \caption{Fraction of LLM responses matching items commonly cited as ``underrated'' on Reddit. Movie responses show the highest alignment with online consensus.}
+    \begin{tabular}{@{}lc@{}}
+        \toprule
+        \textbf{Category} & \textbf{Overlap rate} \\
+        \midrule
+        Movies & \textbf{40.5\%} \\
+        Food & 19.0\% \\
+        Technology & 18.5\% \\
+        Travel & 15.8\% \\
+        Music & 1.7\% \\
+        Books & 0.3\% \\
+        \midrule
+        Overall & 16.0\% \\
+        \bottomrule
+    \end{tabular}
+    \label{tab:reddit}
+\end{table}
+
+\subsection{Statistical Significance}
+\label{sec:stats}
+
+All comparisons between underrated and control prompt types are highly significant. \Tabref{tab:stats} reports Welch's $t$-tests and Cohen's $d$ effect sizes. Underrated prompts show significantly lower dominance (more spread) than both control types, with large effect sizes ($|d| > 0.75$ in all cases). However, as we argue in \secref{sec:discussion}, this does not indicate genuine novelty---it reflects the wider answer space of underrated prompts, not the quality of the answers produced.
+
+\begin{table}[t]
+    \centering
+    \caption{Statistical comparisons between \underrated and control prompt types. All differences are significant at $p < 0.001$ with large effect sizes.}
+    \resizebox{\textwidth}{!}{%
+    \begin{tabular}{@{}llccc@{}}
+        \toprule
+        \textbf{Metric} & \textbf{Comparison} & \textbf{$t$} & \textbf{$p$} & \textbf{Cohen's $d$} \\
+        \midrule
+        Unique rate & \underrated vs.\ \popular & 7.29 & $< 0.0001$ & 1.12 \\
+        Unique rate & \underrated vs.\ \factual & 7.62 & $< 0.0001$ & 1.42 \\
+        Entropy & \underrated vs.\ \popular & 5.26 & $< 0.0001$ & 0.95 \\
+        Entropy & \underrated vs.\ \factual & 7.46 & $< 0.0001$ & 1.54 \\
+        Dominance & \underrated vs.\ \popular & $-$3.85 & 0.0006 & $-$0.76 \\
+        Dominance & \underrated vs.\ \factual & $-$6.62 & $< 0.0001$ & $-$1.42 \\
+        \bottomrule
+    \end{tabular}
+    }
+    \label{tab:stats}
+\end{table}

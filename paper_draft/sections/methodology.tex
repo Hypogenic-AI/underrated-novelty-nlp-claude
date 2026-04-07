@@ -1,0 +1,61 @@
+\section{Methodology}
+\label{sec:method}
+
+\subsection{Task Design}
+\label{sec:task}
+
+We design a benchmark of 96 prompts organized into three types:
+
+\para{Underrated prompts (80).} Ten prompts per category across eight domains: movies, music, books, food, travel, technology, sports, and science. Each prompt asks for ``the most underrated'' item in a specific subcategory (\eg ``What is the most underrated spice?'', ``What is the most underrated animated movie?''). These prompts require second-order reasoning: the model must reason about what most people overlook, not simply what is good.
+
+\para{Popular consensus controls (8).} One ``What is the best X?'' prompt per category (\eg ``What is the best movie of all time?''). These are subjective but have well-known consensus answers, providing a baseline for convergence on popular opinion.
+
+\para{Factual baseline controls (8).} One factual prompt per category (\eg ``What is the highest-grossing movie of all time?''). These have objective answers and establish a ceiling for expected convergence.
+
+\subsection{Models}
+
+We query three OpenAI models spanning different capability tiers:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item \gptfull (OpenAI, 2025): full-scale model
+    \item \gptmini (OpenAI, 2025): efficiency-optimized variant
+    \item \gptfo (OpenAI, 2024): prior-generation model
+\end{itemize}
+
+\subsection{Sampling Protocol}
+
+For each prompt--model pair, we collect 20 independent responses at temperature $\tau = 1.0$ with a maximum of 150 tokens. The system prompt instructs the model to ``name a single, specific item and provide a brief justification.'' Each sample uses a distinct random seed (base seed 42 + sample ID) to maximize independence. This yields $3 \times 96 \times 20 = 5{,}760$ total API calls.
+
+\subsection{Response Extraction}
+
+We extract the specific item named in each response using a multi-stage pipeline: (1) regex-based extraction targeting patterns like ``\textit{The most underrated X is} \textbf{Y}'' and similar constructions, (2) normalization to canonical forms (\eg title case, removal of articles), and (3) manual verification of a random 5\% sample. We acknowledge that extraction noise is a limitation; sophisticated named-entity recognition or LLM-based extraction could improve precision.
+
+\subsection{Evaluation Metrics}
+\label{sec:metrics}
+
+We define five complementary metrics to capture different aspects of output diversity:
+
+\para{Unique answer rate.} The proportion of distinct extracted answers out of 20 samples per prompt per model. A rate of 1.0 means every response names a different item; a rate of 0.05 means all 20 responses name the same item.
+
+\para{Shannon entropy.} Computed over the distribution of extracted answers for each prompt--model pair:
+\begin{equation}
+    H = -\sum_{i=1}^{k} p_i \log_2 p_i
+    \label{eq:entropy}
+\end{equation}
+where $p_i$ is the proportion of responses naming item $i$ and $k$ is the number of distinct items. Higher entropy indicates a more uniform distribution of answers.
+
+\para{Dominance.} The fraction of responses matching the single most common answer. A dominance of 1.0 means perfect convergence; lower values indicate more spread.
+
+\para{Semantic diversity.} We embed all 20 responses per prompt--model pair using \textsc{all-MiniLM-L6-v2}~\cite{reimers2019sentence} and compute $1 - \bar{c}$, where $\bar{c}$ is the mean pairwise cosine similarity. This captures variation in explanations even when the named item is identical.
+
+\para{Inter-model Jaccard overlap.} For each prompt, we compute the Jaccard similarity of the top-5 answer sets between each pair of models:
+\begin{equation}
+    J(A, B) = \frac{|A \cap B|}{|A \cup B|}
+    \label{eq:jaccard}
+\end{equation}
+where $A$ and $B$ are the top-5 answer sets from two models. We also report \emph{top-1 unanimity}: the fraction of prompts where all three models agree on the same most-common answer.
+
+\para{Reddit overlap.} We curate a reference list of items commonly described as ``underrated'' in Reddit discussions across six categories (movies, food, technology, travel, music, books). We compute the fraction of LLM responses that match items on this list, providing a proxy for whether the model's answers reflect online consensus.
+
+\subsection{Statistical Testing}
+
+We compare diversity metrics across prompt types using Welch's $t$-test (robust to unequal variances) and report Cohen's $d$ for effect sizes. All comparisons are evaluated at $\alpha = 0.05$.

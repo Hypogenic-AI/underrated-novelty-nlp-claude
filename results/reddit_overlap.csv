@@ -1,0 +1,7 @@
+category,n_responses,matches_common,overlap_rate
+movies,600,243,0.405
+music,600,10,0.016666666666666666
+books,600,2,0.0033333333333333335
+food,600,114,0.19
+technology,600,111,0.185
+travel,600,95,0.15833333333333333

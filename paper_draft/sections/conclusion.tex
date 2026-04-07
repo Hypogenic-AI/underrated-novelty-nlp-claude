@@ -1,0 +1,8 @@
+\section{Conclusion}
+\label{sec:conclusion}
+
+We introduced the ``most underrated'' prompt as a diagnostic for LLM generative novelty and used it to evaluate three OpenAI models across 80 prompts in 8 categories. Our results reveal a \metapop: when asked to name the most underrated item in a category, LLMs converge on items that are \emph{frequently described as underrated} in online discourse---``Children of Men'' for movies, sumac for spices, the Sega Dreamcast for consoles---rather than identifying genuinely overlooked items. The average dominance of 48.7\% means nearly half of all responses from a single model name the exact same item, with extreme cases reaching 93\% convergence.
+
+A key nuance is the dissociation between intra-model convergence and inter-model agreement: while individual models converge strongly, different models converge on \emph{different} stereotyped answers (8.8\% top-1 unanimity), revealing that ``underrated'' biases are training-data-specific rather than universal.
+
+The ``most underrated'' prompt offers a lightweight, reproducible test of whether a model can reason beyond the patterns in its training data. Future work should expand to more model families, collect human baselines for direct comparison, and investigate whether prompting strategies (\eg chain-of-thought, persona variation, explicit novelty instructions) can break the \metapop cycle. We also encourage longitudinal studies tracking whether canonical ``underrated'' picks shift as models are retrained, which would shed light on the dynamics of training data influence on model ``taste.''

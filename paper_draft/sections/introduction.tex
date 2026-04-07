@@ -1,0 +1,20 @@
+\section{Introduction}
+\label{sec:intro}
+
+Ask any film enthusiast for the most underrated movie of all time, and you will get a spirited, personal answer. Ask three large language models the same question twenty times each, and you will get ``Children of Men''---fifty-two times out of sixty. This paper investigates what happens when LLMs are asked to exercise \emph{taste}: to identify items that are genuinely underappreciated rather than merely well-known.
+
+As LLMs are deployed for ideation~\cite{wu2024generative}, recommendation~\cite{lichtenberg2024popularity}, and creative writing, their capacity for novelty becomes a first-order concern. A useful creative assistant should not simply regurgitate the consensus; it should surprise. Yet a growing body of work documents \newterm{generative monoculture}---the systematic narrowing of LLM output distributions relative to their training data~\cite{wu2024generative, wenger2025creative}. \citet{wenger2025creative} show that even models from different families produce strikingly similar creative outputs, while \citet{pmc2024diminished} find 99.7\% convergence on survey-style opinion questions.
+
+{\bf What is missing?} Prior work measures output homogeneity on creativity benchmarks (Alternate Uses Task, Divergent Association Task) or factual question answering. No study has tested whether LLMs can reason about \emph{underratedness}---a task that requires second-order reasoning about popularity and perception. Naming the ``most underrated'' item demands not just knowledge of what exists, but a model of what most people overlook. This is a test of discernment, not recall.
+
+We address this gap with a systematic evaluation across three models, eight categories, and 4,800 underrated responses. Our central finding is a phenomenon we call \metapop: LLMs converge on items that are \emph{frequently described as underrated} in training data (\eg ``Children of Men,'' sumac, the Sega Dreamcast) rather than identifying genuinely overlooked items. The models have learned the \emph{wisdom of the crowd's contrarianism}, not genuine taste.
+
+The picture is nuanced. While individual models converge strongly (mean \dominance of 48.7\%), different models converge on \emph{different} stereotyped answers---inter-model top-1 unanimity is only 8.8\%. Underrated prompts also elicit significantly more lexical diversity than ``best'' or factual controls (unique rate 0.40 vs.\ 0.21 vs.\ 0.13; all $p < 0.0001$), though this reflects a wider answer space rather than genuine novelty.
+
+We make the following contributions:
+\begin{itemize}[leftmargin=*,itemsep=0pt,topsep=0pt]
+    \item We introduce the ``most underrated'' prompt as a lightweight diagnostic for LLM generative novelty, requiring second-order reasoning about popularity and perception.
+    \item We identify \metapop---the tendency of LLMs to name items that are popular-as-underrated rather than genuinely overlooked---through a benchmark of 80 prompts across 8 categories with 4,800 model responses.
+    \item We reveal a dissociation between intra-model convergence (high) and inter-model agreement (low), showing that different models learn different but equally stereotyped notions of ``underrated.''
+    \item We provide a comparison against both subjective and factual baselines, demonstrating that underrated convergence is not an artifact of question type.
+\end{itemize}

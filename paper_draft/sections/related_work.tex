@@ -1,0 +1,22 @@
+\section{Related Work}
+\label{sec:related}
+
+\para{Generative monoculture.}
+\citet{wu2024generative} formalize the concept of generative monoculture, showing that LLM-generated book reviews and code solutions exhibit dramatically narrower distributions than human-produced content. They find that RLHF alignment is the primary driver of homogeneity, and that naive mitigations such as temperature scaling and top-$p$ sampling are insufficient to restore diversity. Our work extends this finding to subjective preference questions, where we would expect more diversity than in sentiment or code---yet still find strong convergence.
+
+\para{Creative homogeneity across models.}
+\citet{wenger2025creative} demonstrate that creative homogeneity is not limited to individual models but persists \emph{across} model families. Applying standardized creativity tests (Alternate Uses Task, Forward Flow, Divergent Association Task) to 22 LLMs and 102 humans, they find that LLMs match individual-level originality scores but produce far less variable outputs at the population level (effect sizes 1.4--2.2). Unlike their work on open-ended creativity tasks, we focus on a constrained judgment task---naming a single underrated item---that tests discernment rather than generative fluency.
+
+\para{LLM output diversity frameworks.}
+\citet{dhingra2026magic} propose a unified framework for understanding LLM output variation across epistemic, interactional, societal, and safety contexts. For underrated prompts, diversity is desirable (the interactional context), yet models may default to convergent behavior learned through alignment training. \citet{davydov2025novelty} develop a semantic similarity framework for measuring generation novelty against pretraining corpora, finding that models reuse training data over longer sequences than previously reported. Our work complements these frameworks by providing a specific, reproducible task where convergence on training-data patterns is directly observable.
+
+\para{Popularity bias in LLM recommendations.}
+\citet{lichtenberg2024popularity} study popularity bias in LLM-based recommender systems and find that while LLMs exhibit less popularity bias than collaborative filtering, they still favor items well-represented in training data. This connects directly to our finding of \metapop: when asked for ``underrated'' items, LLMs favor items that are popular \emph{as examples of underratedness} in their training data, creating a second-order popularity bias that standard recommendation debiasing would not address.
+
+\para{Diminished diversity of thought.}
+\citet{pmc2024diminished} find that 99.7\% of GPT-3.5 runs produce identical answers to survey-style opinion questions, demonstrating extreme convergence on tasks that nominally admit multiple valid responses. Our underrated prompts occupy a similar space---subjective questions with many valid answers---and we observe comparable convergence patterns (up to 93\% dominance for the most stereotyped prompts), though with more variation across categories and models.
+
+\para{Divergent creativity benchmarks.}
+\citet{divergent2024creativity} compare divergent creativity between LLMs and 100,000 humans using the Divergent Association Task, finding that LLMs surpass average human performance but fall short of highly creative individuals. This individual-vs-population paradox---high individual scores but low collective diversity---mirrors our finding that each model's top answer may be defensible in isolation, but the systematic convergence across samples reveals a lack of genuine novelty.
+
+Our work differs from prior studies in three ways: (1) we test a \emph{judgment} task rather than an open-ended creativity task; (2) we specifically measure the \metapop phenomenon, where convergence reflects second-order popularity rather than simple frequency; and (3) we provide a lightweight, category-spanning diagnostic that can be applied to any generative model without specialized infrastructure.

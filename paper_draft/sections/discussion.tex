@@ -1,0 +1,41 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{The Meta-Popularity Problem}
+\label{sec:metapop}
+
+Our central finding is that LLMs have learned a \metapop: items that are \emph{popular as underrated}---frequently described as underrated in training data---are the ones models name. ``Children of Men'' is not underrated in online discourse; it is the \emph{canonical example} of an underrated movie. Sumac is the canonical underrated spice; the Sega Dreamcast is the canonical underrated console. The models have learned the wisdom of the crowd's contrarianism, not genuine discernment.
+
+This phenomenon is distinct from standard popularity bias~\cite{lichtenberg2024popularity}. A model exhibiting popularity bias recommends \emph{popular items}; a model exhibiting \metapop recommends \emph{items that are popular to call underrated}. The latter is a second-order effect that standard debiasing techniques---which focus on item frequency or exposure counts---would not address.
+
+\subsection{Intra-Model Convergence vs.\ Inter-Model Divergence}
+\label{sec:intra_inter}
+
+A nuanced pattern emerges from the interaction of our intra- and inter-model metrics. Individual models converge strongly---each model picks the same answer roughly 50\% of the time---but different models pick \emph{different} stereotyped answers, with only 8.8\% top-1 unanimity across underrated prompts. This contrasts with the findings of \citet{wenger2025creative}, who report high cross-model homogeneity on creativity tasks. We attribute the difference to the nature of the task: open-ended creativity tasks draw on similar training data patterns across models, while ``underrated'' judgments are more sensitive to the specific distribution of opinions in each model's training corpus.
+
+This dissociation has practical implications. Ensembling multiple models would increase the diversity of underrated recommendations, but each individual model's contribution would still be stereotyped. True novelty requires reasoning that goes beyond pattern matching over training data.
+
+\subsection{Category Effects}
+\label{sec:category_effects}
+
+The variation in convergence across categories (\tabref{tab:category}) is informative. Food and movies---domains with strong online consensus about what is underrated---show the highest convergence (dominance 0.597 and 0.560). Music, where taste is more fragmented and personal, shows the most diversity (dominance 0.345). This pattern supports the hypothesis that convergence is driven by training data consensus rather than intrinsic model properties: categories where the internet agrees about underratedness produce more convergent LLM responses.
+
+\subsection{Limitations}
+\label{sec:limitations}
+
+\para{Model coverage.} We test three models from a single provider (OpenAI). Expanding to models from Anthropic, Google, Meta, and Mistral would strengthen our inter-model findings and test whether \metapop is universal or provider-specific.
+
+\para{No human baseline.} We lack a controlled human comparison. Reddit data serves as a proxy for online consensus, but a formal crowdsourced study---where humans answer the same prompts under the same conditions---would provide a more rigorous diversity baseline.
+
+\para{Extraction noise.} Our regex-based item extraction occasionally includes explanation text alongside the named item, introducing noise into lexical diversity metrics. LLM-based or NER-based extraction would improve precision.
+
+\para{Reddit reference list.} Our curated list of commonly-cited ``underrated'' items covers only six categories and may be incomplete, likely underestimating the true overlap between LLM answers and online consensus.
+
+\para{Temperature.} We test only $\tau = 1.0$. Prior work suggests temperature has limited effect on diversity~\cite{wu2024generative}, but a systematic sweep would strengthen this claim in our setting.
+
+\para{Language.} All prompts and evaluation are in English. The \metapop patterns may differ in other languages, where different online communities shape the training data.
+
+\subsection{Broader Implications}
+\label{sec:implications}
+
+Our results have three practical implications. First, LLMs should not be trusted for ``novel'' recommendations without verification---their underrated picks are the consensus underrated picks, not genuinely overlooked items. Second, the underrated prompt can serve as a quick, zero-resource diagnostic for generative novelty in new models: a model capable of genuine innovation should not consistently name the most commonly-cited ``underrated'' item. Third, the \metapop phenomenon suggests that RLHF and instruction tuning may specifically optimize for popular-but-contrarian answers, a hypothesis that merits further investigation into the alignment pipeline.

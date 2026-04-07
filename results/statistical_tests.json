@@ -1,0 +1,44 @@
+{
+  "unique_rate_underrated_vs_popular": {
+    "t_stat": 7.287172493506143,
+    "p_value": 4.326509048471922e-09,
+    "cohens_d": 1.1241066309688923,
+    "mean_underrated": 0.3970833333333334,
+    "mean_popular": 0.20625000000000002
+  },
+  "unique_rate_underrated_vs_factual": {
+    "t_stat": 7.6242966671253845,
+    "p_value": 9.998997333913993e-09,
+    "cohens_d": 1.422693685885658,
+    "mean_underrated": 0.3970833333333334,
+    "mean_factual": 0.13125
+  },
+  "entropy_underrated_vs_popular": {
+    "t_stat": 5.26401906639853,
+    "p_value": 7.978641900327287e-06,
+    "cohens_d": 0.9531400037017642,
+    "mean_underrated": 2.2089486937435665,
+    "mean_popular": 1.31642055376374
+  },
+  "entropy_underrated_vs_factual": {
+    "t_stat": 7.459142303190266,
+    "p_value": 3.2129427002038567e-08,
+    "cohens_d": 1.542808531570247,
+    "mean_underrated": 2.2089486937435665,
+    "mean_factual": 0.6091377097028533
+  },
+  "dominance_underrated_vs_popular": {
+    "t_stat": -3.8535891594108898,
+    "p_value": 0.0005570907251304509,
+    "cohens_d": -0.7567383314068945,
+    "mean_underrated": 0.4875,
+    "mean_popular": 0.6625
+  },
+  "dominance_underrated_vs_factual": {
+    "t_stat": -6.619771174495357,
+    "p_value": 3.4742169092319075e-07,
+    "cohens_d": -1.4185572399958712,
+    "mean_underrated": 0.4875,
+    "mean_factual": 0.84375
+  }
+}

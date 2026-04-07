@@ -1,0 +1,81 @@
+prompt,top_answer,frequency,total,dominance,n_unique
+What is the most underrated spice?,sumac,56,60,0.9333333333333333,4
+What is the most underrated movie of all time?,children of men,52,60,0.8666666666666667,8
+What is the most underrated video game console?,sega dreamcast,46,60,0.7666666666666667,7
+What is the most underrated animated movie?,the iron giant,40,60,0.6666666666666666,6
+What is the most underrated dessert?,rice pudding,40,60,0.6666666666666666,12
+What is the most underrated country to visit?,slovenia,39,60,0.65,6
+What is the most underrated environmental innovation?,biochar,39,60,0.65,17
+What is the most underrated operating system?,haiku os,39,60,0.65,6
+What is the most underrated thriller movie?,prisoners,38,60,0.6333333333333333,9
+What is the most underrated scientist?,lise meitner,38,60,0.6333333333333333,8
+What is the most underrated fruit?,persimmon,37,60,0.6166666666666667,13
+What is the most underrated app?,notion,33,60,0.55,13
+What is the most underrated vegetable?,kohlrabi,32,60,0.5333333333333333,6
+What is the most underrated US state to visit?,new mexico,32,60,0.5333333333333333,12
+What is the most underrated baseball player?,kenny lofton,31,60,0.5166666666666667,20
+What is the most underrated national park?,great basin national park,31,60,0.5166666666666667,8
+What is the most underrated African country to visit?,são tomé and príncipe,30,60,0.5,6
+What is the most underrated hip-hop album?,below the heavens,27,60,0.45,24
+What is the most underrated athlete?,tim duncan,27,60,0.45,24
+What is the most underrated snack?,roasted chickpeas,27,60,0.45,13
+What is the most underrated field of science?,mycology,26,60,0.43333333333333335,12
+What is the most underrated soccer team?,atalanta b.c,25,60,0.4166666666666667,12
+What is the most underrated software tool?,notion,25,60,0.4166666666666667,16
+What is the most underrated author?,octavia e,24,60,0.4,22
+What is the most underrated programming language?,elixir,23,60,0.38333333333333336,21
+What is the most underrated Asian destination?,"luang prabang, laos",23,60,0.38333333333333336,14
+What is the most underrated novel of the 21st century?,never let me go,23,60,0.38333333333333336,19
+What is the most underrated romantic movie?,about time,22,60,0.36666666666666664,13
+What is the most underrated cuisine?,filipino cuisine,22,60,0.36666666666666664,8
+What is the most underrated book of all time?,stoner by john williams,22,60,0.36666666666666664,5
+What is the most underrated NBA player of all time?,sidney moncrief,21,60,0.35,22
+What is the most underrated song of the 2000s?,such great heights,20,60,0.3333333333333333,25
+What is the most underrated invention?,the zipper,20,60,0.3333333333333333,16
+What is the most underrated action movie?,the raid: redemption,20,60,0.3333333333333333,11
+What is the most underrated space mission?,pioneer 10,20,60,0.3333333333333333,21
+What is the most underrated video game?,outer wilds,19,60,0.31666666666666665,22
+What is the most underrated extreme sport?,ice climbing,19,60,0.31666666666666665,19
+What is the most underrated music genre?,shoegaze,19,60,0.31666666666666665,21
+What is the most underrated tech company?,nvidia,18,60,0.3,24
+What is the most underrated mountain range?,the carpathian mountains,18,60,0.3,26
+What is the most underrated sci-fi movie?,moon (2009),18,60,0.3,13
+What is the most underrated city in the US?,"milwaukee, wisconsin",18,60,0.3,12
+What is the most underrated classic novel?,the master and margarita,17,60,0.2833333333333333,16
+What is the most underrated sport?,ultimate frisbee,17,60,0.2833333333333333,12
+What is the most underrated horror movie?,lake mungo,17,60,0.2833333333333333,15
+What is the most underrated Olympic event?,racewalking,16,60,0.26666666666666666,10
+What is the most underrated breakfast food?,oatmeal,16,60,0.26666666666666666,17
+What is the most underrated comedy movie?,popstar: never stop never stopping,15,60,0.25,16
+What is the most underrated type of cheese?,taleggio,15,60,0.25,14
+What is the most underrated scientific discovery?,the haber-bosch process,15,60,0.25,27
+What is the most underrated dish?,cabbage rolls,15,60,0.25,18
+What is the most underrated classical composer?,nikolai medtner,14,60,0.23333333333333334,21
+What is the most underrated martial art?,sambo,14,60,0.23333333333333334,8
+What is the most underrated band?,supergrass,14,60,0.23333333333333334,17
+What is the most underrated city in Europe?,ljubljana,14,60,0.23333333333333334,18
+What is the most underrated documentary?,jiro dreams of sushi,13,60,0.21666666666666667,18
+What is the most underrated beach destination?,albanian riviera,13,60,0.21666666666666667,34
+What is the most underrated website?,library genesis (libgen),13,60,0.21666666666666667,22
+What is the most underrated fantasy novel?,the goblin emperor,12,60,0.2,22
+What is the most underrated movie of the 2010s?,annihilation,12,60,0.2,27
+What is the most underrated mathematical theorem?,the intermediate value theorem,12,60,0.2,33
+What is the most underrated football (NFL) player?,geno smith,12,60,0.2,34
+What is the most underrated non-fiction book?,"thinking, fast and slow",12,60,0.2,33
+What is the most underrated tech innovation?,qr codes are the most underrated tech innovation,11,60,0.18333333333333332,26
+What is the most underrated short story collection?,her body and other parties,11,60,0.18333333333333332,25
+What is the most underrated island?,isle of eigg,11,60,0.18333333333333332,25
+What is the most underrated mystery novel?,the westing game by ellen raskin,11,60,0.18333333333333332,28
+What is the most underrated jazz musician?,charles mingus,10,60,0.16666666666666666,35
+What is the most underrated electronic music artist?,tycho,10,60,0.16666666666666666,27
+What is the most underrated science fiction book?,roadside picnic,9,60,0.15,27
+What is the most underrated album of all time?,pink moon,9,60,0.15,22
+What is the most underrated solo artist?,robyn,9,60,0.15,28
+What is the most underrated medical breakthrough?,oral rehydration therapy (ort),9,60,0.15,37
+What is the most underrated technology from the 20th century?,the stirling engine,8,60,0.13333333333333333,33
+What is the most underrated engineering achievement?,the haber-bosch process,7,60,0.11666666666666667,37
+What is the most underrated restaurant chain?,culver’s,6,60,0.1,29
+What is the most underrated rock album?,daydream nation,5,60,0.08333333333333333,39
+What is the most underrated biography?,west with the night,5,60,0.08333333333333333,38
+What is the most underrated gadget?,label maker,4,60,0.06666666666666667,49
+What is the most underrated sports rivalry?,the iron bowl (auburn vs,3,60,0.05,46

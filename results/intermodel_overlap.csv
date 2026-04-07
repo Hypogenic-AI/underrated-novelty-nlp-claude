@@ -1,0 +1,97 @@
+prompt_text,prompt_type,category,mean_jaccard,top1_unanimous,n_unique_top1
+What is the most underrated movie of all time?,underrated,movies,0.2222222222222222,True,1
+What is the most underrated movie of the 2010s?,underrated,movies,0.037037037037037035,False,3
+What is the most underrated sci-fi movie?,underrated,movies,0.17857142857142858,False,3
+What is the most underrated comedy movie?,underrated,movies,0.33095238095238094,False,2
+What is the most underrated horror movie?,underrated,movies,0.22592592592592595,False,3
+What is the most underrated animated movie?,underrated,movies,0.3666666666666667,False,2
+What is the most underrated documentary?,underrated,movies,0.12037037037037036,False,3
+What is the most underrated action movie?,underrated,movies,0.2619047619047619,False,2
+What is the most underrated romantic movie?,underrated,movies,0.21666666666666667,False,2
+What is the most underrated thriller movie?,underrated,movies,0.22261904761904763,True,1
+What is the most underrated album of all time?,underrated,music,0.1111111111111111,False,3
+What is the most underrated band?,underrated,music,0.22023809523809523,False,3
+What is the most underrated solo artist?,underrated,music,0.037037037037037035,False,3
+What is the most underrated hip-hop album?,underrated,music,0.07407407407407407,False,2
+What is the most underrated rock album?,underrated,music,0.0,False,3
+What is the most underrated song of the 2000s?,underrated,music,0.037037037037037035,False,3
+What is the most underrated jazz musician?,underrated,music,0.037037037037037035,False,3
+What is the most underrated music genre?,underrated,music,0.2169312169312169,False,2
+What is the most underrated classical composer?,underrated,music,0.1369047619047619,False,3
+What is the most underrated electronic music artist?,underrated,music,0.1111111111111111,False,3
+What is the most underrated book of all time?,underrated,books,0.20000000000000004,False,3
+What is the most underrated novel of the 21st century?,underrated,books,0.19576719576719573,False,3
+What is the most underrated science fiction book?,underrated,books,0.1574074074074074,False,3
+What is the most underrated non-fiction book?,underrated,books,0.07407407407407407,False,3
+What is the most underrated author?,underrated,books,0.22023809523809523,False,3
+What is the most underrated fantasy novel?,underrated,books,0.1111111111111111,False,2
+What is the most underrated classic novel?,underrated,books,0.1574074074074074,False,3
+What is the most underrated mystery novel?,underrated,books,0.0,False,3
+What is the most underrated short story collection?,underrated,books,0.08333333333333333,False,3
+What is the most underrated biography?,underrated,books,0.07407407407407407,False,3
+What is the most underrated cuisine?,underrated,food,0.29523809523809524,False,3
+What is the most underrated fruit?,underrated,food,0.21666666666666667,True,1
+What is the most underrated vegetable?,underrated,food,0.3444444444444444,False,2
+What is the most underrated spice?,underrated,food,0.3333333333333333,True,1
+What is the most underrated dish?,underrated,food,0.25925925925925924,False,3
+What is the most underrated snack?,underrated,food,0.06666666666666667,False,2
+What is the most underrated restaurant chain?,underrated,food,0.08333333333333333,False,3
+What is the most underrated type of cheese?,underrated,food,0.20370370370370372,False,3
+What is the most underrated breakfast food?,underrated,food,0.13227513227513227,False,3
+What is the most underrated dessert?,underrated,food,0.1638888888888889,False,2
+What is the most underrated country to visit?,underrated,travel,0.6,False,2
+What is the most underrated city in Europe?,underrated,travel,0.16666666666666666,False,2
+What is the most underrated beach destination?,underrated,travel,0.037037037037037035,False,3
+What is the most underrated national park?,underrated,travel,0.4666666666666666,False,2
+What is the most underrated US state to visit?,underrated,travel,0.21666666666666667,False,2
+What is the most underrated Asian destination?,underrated,travel,0.3055555555555555,False,2
+What is the most underrated island?,underrated,travel,0.041666666666666664,False,3
+What is the most underrated mountain range?,underrated,travel,0.041666666666666664,False,3
+What is the most underrated city in the US?,underrated,travel,0.19576719576719573,False,3
+What is the most underrated African country to visit?,underrated,travel,0.4666666666666666,False,2
+What is the most underrated programming language?,underrated,technology,0.037037037037037035,False,2
+What is the most underrated tech company?,underrated,technology,0.037037037037037035,False,3
+What is the most underrated app?,underrated,technology,0.19444444444444442,False,2
+What is the most underrated gadget?,underrated,technology,0.0,False,3
+What is the most underrated video game?,underrated,technology,0.14285714285714285,False,2
+What is the most underrated video game console?,underrated,technology,0.2888888888888889,True,1
+What is the most underrated software tool?,underrated,technology,0.17037037037037037,False,2
+What is the most underrated operating system?,underrated,technology,0.2888888888888889,False,2
+What is the most underrated website?,underrated,technology,0.30952380952380953,False,3
+What is the most underrated tech innovation?,underrated,technology,0.1574074074074074,False,3
+What is the most underrated sport?,underrated,sports,0.2261904761904762,False,3
+What is the most underrated athlete?,underrated,sports,0.19576719576719573,False,2
+What is the most underrated NBA player of all time?,underrated,sports,0.047619047619047616,False,3
+What is the most underrated soccer team?,underrated,sports,0.30158730158730157,False,2
+What is the most underrated Olympic event?,underrated,sports,0.3333333333333333,False,3
+What is the most underrated football (NFL) player?,underrated,sports,0.08333333333333333,False,3
+What is the most underrated baseball player?,underrated,sports,0.14814814814814814,False,2
+What is the most underrated sports rivalry?,underrated,sports,0.0,False,3
+What is the most underrated martial art?,underrated,sports,0.3507936507936507,False,3
+What is the most underrated extreme sport?,underrated,sports,0.13227513227513227,False,3
+What is the most underrated scientific discovery?,underrated,science,0.08333333333333333,False,2
+What is the most underrated scientist?,underrated,science,0.7166666666666667,True,1
+What is the most underrated field of science?,underrated,science,0.30158730158730157,False,2
+What is the most underrated invention?,underrated,science,0.242063492063492,False,2
+What is the most underrated mathematical theorem?,underrated,science,0.08333333333333333,False,3
+What is the most underrated medical breakthrough?,underrated,science,0.0,False,3
+What is the most underrated space mission?,underrated,science,0.1574074074074074,False,2
+What is the most underrated technology from the 20th century?,underrated,science,0.037037037037037035,False,3
+What is the most underrated engineering achievement?,underrated,science,0.1111111111111111,False,3
+What is the most underrated environmental innovation?,underrated,science,0.13095238095238096,True,1
+What is the best movie of all time?,popular_consensus,popular_consensus,0.2222222222222222,True,1
+What is the best album of all time?,popular_consensus,popular_consensus,0.36507936507936506,False,2
+What is the best book of all time?,popular_consensus,popular_consensus,0.33968253968253964,True,1
+What is the best cuisine in the world?,popular_consensus,popular_consensus,0.25,True,1
+What is the best country to visit?,popular_consensus,popular_consensus,0.4222222222222222,False,3
+What is the best programming language?,popular_consensus,popular_consensus,0.5,False,2
+What is the best sport in the world?,popular_consensus,popular_consensus,0.22261904761904763,False,3
+What is the best scientific discovery?,popular_consensus,popular_consensus,0.1111111111111111,False,3
+What is the highest-grossing movie of all time?,factual_baseline,factual_baseline,0.4444444444444444,True,1
+What is the best-selling album of all time?,factual_baseline,factual_baseline,0.4444444444444444,False,2
+What is the best-selling book of all time?,factual_baseline,factual_baseline,0.5555555555555555,False,2
+What is the most popular cuisine globally?,factual_baseline,factual_baseline,1.0,True,1
+What is the most visited country in the world?,factual_baseline,factual_baseline,1.0,True,1
+What is the most popular programming language?,factual_baseline,factual_baseline,1.0,False,2
+What is the most popular sport in the world?,factual_baseline,factual_baseline,0.5555555555555555,True,1
+What was the most impactful scientific discovery?,factual_baseline,factual_baseline,0.1574074074074074,False,3
