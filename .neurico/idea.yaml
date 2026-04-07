@@ -1,0 +1,32 @@
+idea:
+  title: '''Most Underrated'' as a Novelty Metric'
+  domain: nlp
+  hypothesis: 'Large language models (LLMs) struggle with generating novel responses,
+    particularly when asked to name the most underrated item in a category X. If LLMs
+    only identify items that are widely believed to be underrated, rather than providing
+    less obvious or truly novel answers, this indicates a lack of deeper reasoning
+    about novelty. Using the ''most underrated'' prompt can serve as a diagnostic
+    to evaluate LLMs'' capacity for genuine novelty and innovation.
+
+    '
+  background:
+    description: 'LLMs are currently poor at producing novel outputs, and the reasons
+      for this are not entirely clear. One way to test whether LLMs possess enough
+      ''taste'' or discernment to be novel is to ask them to name the most underrated
+      thing in a given category. If their answers align with those commonly cited
+      as underrated (e.g., on relevant subreddits), this does not count as true novelty.
+      The distinction is fuzzy, but initial observations suggest LLMs tend to provide
+      obvious answers, indicating a significant gap in their ability to reason about
+      what is genuinely underrated. This limitation may hinder their potential for
+      true innovation.
+
+      '
+  metadata:
+    author: Ari Holtzman
+    source: IdeaHub
+    source_url: https://hypogenic.ai/ideahub/idea/UmbYQyYnr8fjZJ7GxXam
+    idea_id: _most_underrated__as_a_novelty_20260407_153229_6d1ab30a
+    created_at: '2026-04-07T15:32:29.015721'
+    status: submitted
+    github_repo_name: underrated-novelty-nlp-claude
+    github_repo_url: https://github.com/Hypogenic-AI/underrated-novelty-nlp-claude
